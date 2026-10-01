@@ -3,6 +3,10 @@
   "name": "mundoemquestao",
   "compatibility_date": "2026-09-30",
   "assets": {
-    "directory": "./"
+    "directory": "./",
+    "html_handling": "auto-trailing-slash"
+  },
+  "observability": {
+    "enabled": false
   }
 }
