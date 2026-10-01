@@ -1,0 +1,13 @@
+{
+  "name": "mundoemquestao",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Mundo em Questao - site de noticias",
+  "scripts": {
+    "deploy": "npx wrangler deploy",
+    "preview": "npx wrangler preview"
+  },
+  "devDependencies": {
+    "wrangler": "^3.90.0"
+  }
+}
