@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mundo em Questão — notícias do mundo em um só lugar</title>
+<meta name="description" content="Boletim diário sobre geopolítica, economia, história e ciência, em português.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* ============================================================
+   MUNDO EM QUESTÃO - visual da página
+
+   O estilo veio do arquivo de exemplo que estava na pasta
+   "Mundo em questão", na Área de Trabalho: fundo creme,
+   azul-marinho no texto, dourado nos destaques, título em
+   letra grande e resumo em serifa.
+
+   As notícias vêm do arquivo fontes.json, na mesma pasta.
+   Para mudar as fontes ou as categorias, mexa lá - não aqui.
+   ============================================================ */
+
+:root{
+  --bg:#F6F3EC;--surface:#FFFCF4;--ink:#0F2347;--muted:#54607A;--accent:#8A5A00;--line:#D9D1BD;
+  --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --body:"Source Serif 4",Georgia,"Times New Roman",serif;
+}
+
+/* Modo escuro: seguido sozinho, a menos que você force o claro */
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#0A1830;--surface:#10254A;--ink:#F1E9D6;--muted:#A9B3C8;--accent:#E0B24A;--line:#243B66
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0A1830;--surface:#10254A;--ink:#F1E9D6;--muted:#A9B3C8;--accent:#E0B24A;--line:#243B66
+}
+
+html{scroll-padding-top:20px}
+*,*::before,*::after{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:var(--body);font-size:1.125rem;line-height:1.65;
+}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:4px}
+
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+
+/* ---------------------------------------------------- cabeçalho */
+
+header.top{
+  display:flex;justify-content:space-between;align-items:center;
+  gap:16px;padding:18px 0;font-family:var(--display);font-weight:700;
+  border-bottom:1px solid var(--line);
+}
+header.top a{text-decoration:none;font-size:1.05rem}
+header.top nav{display:flex;gap:22px;font-weight:500;font-size:.95rem}
+header.top nav a{color:var(--muted)}
+header.top nav a:hover{color:var(--accent)}
+
+/* Botão "Atualizar" */
+.botao{
+  font:700 .9rem var(--display);
+  background:var(--accent);color:var(--bg);
+  border:1.5px solid var(--accent);
+  border-radius:999px;padding:8px 18px;cursor:pointer;
+  transition:opacity .15s;white-space:nowrap;
+}
+.botao:hover{opacity:.85}
+.botao:disabled{opacity:.5;cursor:wait}
+
+/* ------------------------------------------------------- capa */
+
+.hero{display:grid;grid-template-columns:1.25fr .75fr;gap:32px;align-items:center;padding:40px 0 36px}
+.hero h1{
+  font-family:var(--display);font-weight:800;
+  font-size:clamp(2.4rem,7vw,4.4rem);line-height:.98;
+  letter-spacing:-.03em;margin:0 0 16px;
+}
+.hero p{max-width:34ch;margin:0;font-size:1.2rem;color:var(--muted)}
+
+/* O globo da capa: círculo com as linhas de meridiano e um ponto
+   dourado marcando "o que está acontecendo agora".
+   Desenhado só em CSS, para não depender de arquivo de imagem. */
+.globo{
+  width:min(290px,70vw);aspect-ratio:1;justify-self:end;
+  border:2px solid var(--ink);border-radius:50%;position:relative;opacity:.9;
+}
+.globo::before{
+  content:"";position:absolute;inset:0;border-radius:50%;
+  background:
+    linear-gradient(90deg,transparent calc(50% - 1px),var(--line) calc(50% - 1px),var(--line) calc(50% + 1px),transparent calc(50% + 1px)),
+    linear-gradient(0deg,transparent calc(50% - 1px),var(--line) calc(50% - 1px),var(--line) calc(50% + 1px),transparent calc(50% + 1px));
+}
+.globo::after{
+  content:"";position:absolute;top:25%;right:19%;
+  width:11%;height:11%;background:var(--accent);border-radius:50%;
+  box-shadow:0 0 0 6px rgba(138,90,0,.18);
+}
+
+/* ---------------------------------------------------- seções */
+
+section{padding:8px 0 48px}
+h2{font-family:var(--display);font-weight:700;font-size:1.5rem;letter-spacing:-.01em;margin:0 0 16px}
+
+/* Busca */
+.barra-busca{
+  width:100%;padding:13px 16px;font-size:1rem;font-family:var(--body);
+  border:1.5px solid var(--line);border-radius:999px;
+  background:var(--surface);color:var(--ink);
+}
+.barra-busca::placeholder{color:var(--muted)}
+.barra-busca:focus{outline:none;border-color:var(--accent)}
+
+/* Botões redondos de filtro */
+.rotulo{font:700 .78rem var(--display);text-transform:uppercase;letter-spacing:.09em;color:var(--muted);margin:18px 0 7px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{
+  font:500 .9rem var(--display);color:var(--ink);
+  background:transparent;border:1.5px solid var(--line);
+  border-radius:999px;padding:7px 15px;cursor:pointer;
+}
+.chips button:hover{border-color:var(--accent)}
+.chips button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--bg)}
+.lista-secoes{list-style:none;margin:0;padding:0}
+.lista-secoes li{margin:0 0 8px}
+
+/* ------------------------------------------------- lista de notícias */
+
+/* Duas colunas no computador: a primeira notícia ganha um cartão
+   grande que ocupa três linhas de altura, e as outras ficam menores. */
+.feed{display:grid;grid-template-columns:1.4fr 1fr;gap:28px 40px}
+.lead{grid-row:span 3;background:var(--surface);border-radius:14px;padding:32px}
+.lead h3{font-family:var(--display);font-weight:800;font-size:clamp(1.6rem,3.2vw,2.3rem);line-height:1.12;letter-spacing:-.02em;margin:8px 0 14px}
+.lead p{font-size:1.1rem;color:var(--muted);margin:0}
+
+/* Fotos: arredondadas e proporcionais */
+.lead img,.item img{width:100%;height:auto;display:block;border-radius:10px;margin:0 0 14px;background:var(--line)}
+.item img{margin:8px 0 12px}
+
+.item{padding:0 0 22px;border-bottom:1px solid var(--line)}
+.item h3{font-family:var(--display);font-weight:700;font-size:1.15rem;line-height:1.25;margin:2px 0 6px}
+.item p{margin:0;color:var(--muted);font-size:.98rem}
+
+.lead h3 a,.item h3 a{text-decoration:none}
+.lead h3 a:hover,.item h3 a:hover{color:var(--accent)}
+
+.tag{font:600 .88rem var(--display);color:var(--accent)}
+.date{font-size:.88rem;color:var(--muted);margin-left:8px}
+.fonte{font-size:.88rem;color:var(--muted);margin:8px 0 0}
+
+/* Botão "Ler na fonte" */
+.ler{
+  display:inline-block;margin-top:12px;font:700 .88rem var(--display);
+  color:var(--ink);text-decoration:none;border-bottom:2px solid var(--accent);padding-bottom:2px;
+}
+.ler:hover{color:var(--accent)}
+
+/* Aviso [VERIFICAR] */
+.marcar-verificar{
+  display:inline-block;background:#FFF3D6;color:#7A5200;
+  border:1.5px solid #E8CE8A;border-radius:6px;
+  padding:3px 10px;font:700 .78rem var(--display);margin:10px 0 0;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .marcar-verificar{background:#3B2F10;color:#F0D89A;border-color:#6B5718}
+}
+:root[data-theme="dark"] .marcar-verificar{background:#3B2F10;color:#F0D89A;border-color:#6B5718}
+
+/* "Também saiu em..." */
+.outras{font-size:.9rem;color:var(--muted);margin-top:12px}
+
+/* Fonte que falhou */
+.aviso{background:var(--surface);border-left:4px solid var(--accent);border-radius:8px;padding:16px 20px;margin-bottom:26px;font-size:.95rem}
+.aviso ul{margin:8px 0 0;padding-left:20px}
+
+.vazio{grid-column:1/-1;background:var(--surface);border-radius:14px;padding:34px;text-align:center;color:var(--muted)}
+.info-topo{font-size:.92rem;color:var(--muted);margin:22px 0}
+
+/* ------------------------------------------------------- celular */
+
+@media (max-width:760px){
+  header.top{padding:14px 0}
+  /* No celular a navegação some para sobrar espaço ao botão Atualizar */
+  header.top nav{display:none}
+  .hero{grid-template-columns:1fr;padding-top:26px;gap:22px}
+  .globo{max-width:150px;justify-self:start;order:-1}
+  .feed{grid-template-columns:1fr}
+
+  /* Correção importante: sem "grid-row:auto", o cartão da manchete
+     continuaria ocupando três linhas de altura e sobraria um buraco
+     enorme entre a primeira e a segunda notícia no celular. */
+  .lead{grid-row:auto;padding:22px}
+  .sobre{display:grid;grid-template-columns:1fr;gap:0}
+}
+</style>
+</head>
+
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <a href="#topo">Mundo em Questão</a>
+    <nav aria-label="Principal">
+      <a href="#boletim">Boletim</a>
+      <a href="#secoes">Seções</a>
+      <a href="#sobre">Sobre</a>
+    </nav>
+    <button class="botao" id="btn" type="button">Atualizar</button>
+  </header>
+
+  <div class="hero" id="topo">
+    <div>
+      <h1>Mundo em Questão</h1>
+      <p>O que move o mundo, explicado em português, todo dia.</p>
+    </div>
+    <div class="globo" aria-hidden="true"></div>
+  </div>
+
+  <section id="boletim" aria-labelledby="h-boletim">
+    <h2 id="h-boletim">Boletim de hoje</h2>
+
+    <input type="search" class="barra-busca" id="busca" aria-label="Buscar notícia"
+           placeholder="Buscar por palavra no título ou resumo...">
+
+    <div class="rotulo">Editoria</div>
+    <div class="chips" id="chips-categoria" role="group" aria-label="Filtrar por editoria"></div>
+
+    <div class="rotulo">Fonte</div>
+    <div class="chips" id="chips-fonte" role="group" aria-label="Filtrar por fonte"></div>
+
+    <p class="info-topo" id="info">Carregando as notícias...</p>
+    <div id="avisos"></div>
+    <div class="feed" id="feed" aria-live="polite"></div>
+  </section>
+
+  <section id="secoes" aria-labelledby="h-secoes">
+    <h2 id="h-secoes">Seções</h2>
+    <ul class="chips lista-secoes" id="lista-secoes"></ul>
+  </section>
+
+  <section id="sobre" aria-labelledby="h-sobre">
+    <div class="sobre" style="display:grid;grid-template-columns:1fr 1fr;gap:40px">
+      <div>
+        <h2 id="h-sobre">Sobre</h2>
+        <p>Mundo em Questão é um boletim diário sobre o que acontece no mundo: geopolítica,
+           guerras, economia, história, religiões e ciência — e como tudo isso chega até o Brasil.</p>
+        <p>Publicamos resumos objetivos, sem tomar partido, sempre com o link da matéria original.</p>
+      </div>
+      <div>
+        <h2>Como apuramos</h2>
+        <p>As notícias vêm dos feeds RSS de veículos reconhecidos — G1 Mundo, BBC News Brasil,
+           Folha de S.Paulo, UOL e Metrópoles — e são lidas diretamente dos sites de origem.</p>
+        <p>Nada é reescrito por máquina: o resumo é um recorte do texto da própria fonte.
+           Quando a fonte não traz resumo suficiente, a notícia aparece marcada com [VERIFICAR].</p>
+      </div>
+    </div>
+  </section>
+
+  <footer style="border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);font-size:.93rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px">
+    <span>© <span id="ano"></span> Mundo em Questão</span>
+    <span>Fonte citada em cada notícia · nenhum texto copiado</span>
+  </footer>
+</div>
+
+<script>
+/* ============================================================
+   PARTE 1 - guarda do que veio do servidor
+   ============================================================ */
+
+let DADOS = null;      // todas as noticias
+let CATEGORIA = '';    // editoria escolhida ('' = todas)
+let FONTE = '';        // fonte escolhida ('' = todas)
+let BUSCA = '';        // palavra digitada na busca
+
+/* As 10 editorias, na ordem da secao "Seções".
+   O primeiro valor e o nome interno (tem que bater com o que o
+   Python devolve); o segundo e o nome que aparece na tela. */
+const CATEGORIAS = [
+  ['Geopolitica', '🌍 Geopolítica'],
+  ['Guerras e conflitos', '⚔️ Guerras e conflitos'],
+  ['Politica internacional', '🏛️ Política internacional'],
+  ['Economia mundial', '💰 Economia mundial'],
+  ['Historia', '📜 História'],
+  ['Religioes e sociedade', '✝️ Religiões e sociedade'],
+  ['Ciencia e tecnologia', '🔬 Ciência e tecnologia'],
+  ['Grandes acontecimentos', '🚨 Grandes acontecimentos'],
+  ['Misterios e investigacoes', '🕵️ Mistérios e investigações'],
+  ['Brasil no mundo', '🇧🇷 Brasil no mundo'],
+];
+
+
+/* ============================================================
+   PARTE 2 - falar com o servidor
+   ============================================================ */
+
+function carregar(forcar) {
+  const info = document.getElementById('info');
+  const botao = document.getElementById('btn');
+
+  if (forcar) {
+    botao.disabled = true;
+    botao.textContent = 'Buscando...';
+    info.textContent = 'Buscando as notícias nos sites...';
+  }
+
+  // O site tenta usar o arquivo local "noticias.json", que e gerado pelo
+  // programa. Isso deixa o site funcionar mesmo sem o servidor ligado.
+  // Se o arquivo nao existir (por exemplo, no primeiro uso), ele tenta
+  // o servidor local.
+  const arquivoLocal = 'noticias.json';
+
+  fetch(arquivoLocal + (forcar ? '?r=' + Date.now() : ''))
+    .then(r => { if (!r.ok) throw new Error('sem arquivo'); return r.json(); })
+    .catch(() => fetch(forcar ? '/api/noticias?atualizar=1' : '/api/noticias').then(r => r.json()))
+    .then(dados => {
+      DADOS = dados;
+      montarFiltros();
+      mostrar();
+      botao.disabled = false;
+      botao.textContent = 'Atualizar';
+    })
+    .catch(() => {
+      info.textContent = 'Não foi possível carregar as notícias. Abra o site pelo '
+        + 'comando "python servidor.py" e veja se a janela ficou aberta.';
+      botao.disabled = false;
+      botao.textContent = 'Atualizar';
+    });
+}
+
+document.getElementById('btn').onclick = () => carregar(true);
+
+
+/* ============================================================
+   PARTE 3 - os botoes de filtro
+   ============================================================ */
+
+function montarFiltros() {
+  // Conta quantas noticias existem em cada editoria
+  const porCategoria = {};
+  DADOS.noticias.forEach(n => {
+    porCategoria[n.categoria] = (porCategoria[n.categoria] || 0) + 1;
+  });
+
+  const grupoCategoria = document.getElementById('chips-categoria');
+  grupoCategoria.innerHTML = '';
+  grupoCategoria.appendChild(
+    criarChip('Todas', () => escolher('categoria', ''), CATEGORIA === '')
+  );
+  CATEGORIAS.forEach(([chave, rotulo]) => {
+    const total = porCategoria[chave] || 0;
+    grupoCategoria.appendChild(
+      criarChip(rotulo + ' (' + total + ')', () => escolher('categoria', chave), CATEGORIA === chave)
+    );
+  });
+
+  // E o mesmo para as fontes
+  const porFonte = {};
+  DADOS.noticias.forEach(n => { porFonte[n.fonte] = (porFonte[n.fonte] || 0) + 1; });
+
+  const grupoFonte = document.getElementById('chips-fonte');
+  grupoFonte.innerHTML = '';
+  grupoFonte.appendChild(
+    criarChip('Todas', () => escolher('fonte', ''), FONTE === '')
+  );
+  Object.entries(porFonte).sort((a, b) => b[1] - a[1]).forEach(([nome, total]) => {
+    grupoFonte.appendChild(
+      criarChip(nome + ' (' + total + ')', () => escolher('fonte', nome), FONTE === nome)
+    );
+  });
+
+  montarListaSecoes(porCategoria);
+}
+
+function criarChip(texto, aoClicar, ativo) {
+  const b = document.createElement('button');
+  b.type = 'button';
+  b.textContent = texto;
+  b.setAttribute('aria-pressed', String(!!ativo));
+  b.onclick = aoClicar;
+  return b;
+}
+
+/* A secao "Seções": cada botao filtra por uma editoria */
+function montarListaSecoes(porCategoria) {
+  const lista = document.getElementById('lista-secoes');
+  lista.innerHTML = '';
+  CATEGORIAS.forEach(([chave, rotulo]) => {
+    const item = document.createElement('li');
+    const total = porCategoria[chave] || 0;
+    item.appendChild(
+      criarChip(rotulo + ' (' + total + ')', () => irPara(chave), CATEGORIA === chave)
+    );
+    lista.appendChild(item);
+  });
+}
+
+function escolher(tipo, valor) {
+  if (tipo === 'categoria') CATEGORIA = valor;
+  else FONTE = valor;
+  montarFiltros();   // redesenha para atualizar o botao marcado
+  mostrar();
+}
+
+/* Chamado pelos botoes da secao "Seções": limpa os outros filtros */
+function irPara(categoria) {
+  CATEGORIA = categoria;
+  FONTE = '';
+  BUSCA = '';
+  document.getElementById('busca').value = '';
+  montarFiltros();
+  mostrar();
+  document.getElementById('boletim').scrollIntoView({ behavior: 'smooth' });
+}
+
+
+/* ============================================================
+   PARTE 4 - a busca por palavra
+   ============================================================ */
+
+/* Tira os acentos e deixa minúsculas, para a busca não falhar por causa
+   de um acento. Sem isso, quem digita "ucraínia" não encontra "Ucrânia",
+   e "energia" não encontra "energia" escrito de outra forma.
+   Este é o mesmo truque usado no Python, com o mesmo motivo. */
+function simplificar(texto) {
+  return texto
+    .normalize('NFD')                 // separa a letra do acento
+    .replace(/[̀-ͯ]/g, '')          // e remove o acento
+    .toLowerCase()
+}
+
+document.getElementById('busca').oninput = e => {
+  BUSCA = simplificar(e.target.value.trim());
+  mostrar();
+};
+
+
+/* ============================================================
+   PARTE 5 - desenhar as noticias na tela
+   ============================================================ */
+
+/* IMPORTANTE: o texto das noticias vem de sites de terceiros.
+   Por isso usamos textContent e NUNCA innerHTML para esse texto.
+   E o que impede que um titulo malicioso seja executado aqui. */
+function no(tag, classe, texto) {
+  const elemento = document.createElement(tag);
+  if (classe) elemento.className = classe;
+  if (texto !== undefined && texto !== null) elemento.textContent = texto;
+  return elemento;
+}
+
+function mostrar() {
+  if (!DADOS) return;
+
+  const feed = document.getElementById('feed');
+  feed.innerHTML = '';
+
+  // Aplica os tres filtros: editoria, fonte e busca por palavra
+  const visiveis = DADOS.noticias.filter(noticia => {
+    if (CATEGORIA && noticia.categoria !== CATEGORIA) return false;
+    if (FONTE && noticia.fonte !== FONTE) return false;
+    if (BUSCA) {
+      const alvo = simplificar(noticia.titulo + ' ' + noticia.resumo);
+      if (!alvo.includes(BUSCA)) return false;
+    }
+    return true;
+  });
+
+  // Linha de informacao no topo
+  const partes = [visiveis.length + ' de ' + DADOS.total + ' notícias'];
+  if (CATEGORIA) partes.push('· ' + CATEGORIA);
+  if (FONTE) partes.push('· ' + FONTE);
+  if (BUSCA) partes.push('· busca: "' + BUSCA + '"');
+  document.getElementById('info').textContent =
+    partes.join(' ') + '  ·  atualizado às ' + DADOS.gerado_em;
+
+  // Fontes que falharam hoje (o site continua funcionando sem elas)
+  const avisos = document.getElementById('avisos');
+  avisos.innerHTML = '';
+  if (DADOS.erros && DADOS.erros.length) {
+    const caixa = no('div', 'aviso');
+    caixa.appendChild(no('b', null, 'Hoje estas fontes não responderam:'));
+    const lista = document.createElement('ul');
+    DADOS.erros.forEach(erro => {
+      lista.appendChild(no('li', null, erro.fonte + ' — ' + erro.erro));
+    });
+    caixa.appendChild(lista);
+    avisos.appendChild(caixa);
+  }
+
+  // Nada encontrado com esses filtros
+  if (!visiveis.length) {
+    feed.appendChild(no('div', 'vazio',
+      'Nenhuma notícia com esses filtros. Tente outra palavra ou clique em "Todas".'));
+    return;
+  }
+
+  // A primeira notícia vira o cartão grande. Preferimos uma que tenha foto:
+  // do contrário o topo do site fica sem imagem, que é a primeira coisa que
+  // o leitor vê. Se nenhuma tiver, usamos a primeira mesmo assim.
+  let destaque = visiveis.find(n => n.imagem) || visiveis[0];
+  let indiceDestaque = visiveis.indexOf(destaque);
+
+  visiveis.forEach((n, i) => {
+    feed.appendChild(i === indiceDestaque ? cartaoDestaque(n) : item(n));
+  });
+}
+
+function cartaoDestaque(noticia) {
+  const artigo = no('article', 'lead');
+
+  // Foto, quando a fonte fornece uma. Clicar nela leva a materia original.
+  if (noticia.imagem) {
+    const figure = no('a');
+    figure.href = noticia.link;
+    figure.target = '_blank';
+    figure.rel = 'noopener noreferrer';
+    const foto = no('img');
+    foto.src = noticia.imagem;
+    foto.alt = noticia.titulo;
+    foto.loading = 'lazy';
+    figure.appendChild(foto);
+    artigo.appendChild(figure);
+  }
+
+  const meta = no('div');
+  meta.appendChild(no('span', 'tag', noticia.categoria));
+  meta.appendChild(no('span', 'date', noticia.quando));
+  artigo.appendChild(meta);
+
+  const titulo = no('h3');
+  const link = no('a', null, noticia.titulo);
+  link.href = noticia.link;
+  link.target = '_blank';
+  link.rel = 'noopener noreferrer';
+  titulo.appendChild(link);
+  artigo.appendChild(titulo);
+
+  if (noticia.verificar) {
+    artigo.appendChild(no('div', 'marcar-verificar',
+      '[VERIFICAR] — resumo incompleto, confira na fonte'));
+  }
+
+  artigo.appendChild(no('p', null, noticia.resumo));
+  artigo.appendChild(no('p', 'fonte', 'Fonte: ' + noticia.fonte));
+  artigo.appendChild(botaoLer(noticia));
+
+  return mostrarOutras(artigo, noticia);
+}
+
+function item(noticia) {
+  const artigo = no('article', 'item');
+
+  // Foto, quando houver
+  if (noticia.imagem) {
+    const figure = no('a');
+    figure.href = noticia.link;
+    figure.target = '_blank';
+    figure.rel = 'noopener noreferrer';
+    const foto = no('img');
+    foto.src = noticia.imagem;
+    foto.alt = noticia.titulo;
+    foto.loading = 'lazy';
+    figure.appendChild(foto);
+    artigo.appendChild(figure);
+  }
+
+  const meta = no('div');
+  meta.appendChild(no('span', 'tag', noticia.categoria));
+  meta.appendChild(no('span', 'date', noticia.quando));
+  artigo.appendChild(meta);
+
+  const titulo = no('h3');
+  const link = no('a', null, noticia.titulo);
+  link.href = noticia.link;
+  link.target = '_blank';
+  link.rel = 'noopener noreferrer';
+  titulo.appendChild(link);
+  artigo.appendChild(titulo);
+
+  if (noticia.verificar) {
+    artigo.appendChild(no('div', 'marcar-verificar',
+      '[VERIFICAR] — resumo incompleto, confira na fonte'));
+  }
+
+  artigo.appendChild(no('p', null, noticia.resumo));
+  artigo.appendChild(botaoLer(noticia));
+  artigo.appendChild(no('p', 'fonte', 'Fonte: ' + noticia.fonte));
+
+  return mostrarOutras(artigo, noticia);
+}
+
+function botaoLer(noticia) {
+  const ler = no('a', 'ler', 'Ler na fonte →');
+  ler.href = noticia.link;
+  ler.target = '_blank';
+  ler.rel = 'noopener noreferrer';
+  return ler;
+}
+
+/* Mostra de quais outras fontes a mesma noticia saiu */
+function mostrarOutras(artigo, noticia) {
+  if (!noticia.outras_fontes || !noticia.outras_fontes.length) return artigo;
+
+  const div = no('div', 'outras', 'Também saiu em: ');
+  noticia.outras_fontes.forEach((outra, indice) => {
+    if (indice > 0) div.appendChild(document.createTextNode(' · '));
+    const link = no('a', null, outra.fonte);
+    link.href = outra.link;
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    div.appendChild(link);
+  });
+  artigo.appendChild(div);
+  return artigo;
+}
+
+
+/* ============================================================
+   PARTE 6 - comecando
+   ============================================================ */
+
+document.getElementById('ano').textContent = new Date().getFullYear();
+carregar(false);
+</script>
+</body>
+</html>
