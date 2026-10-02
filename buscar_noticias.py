@@ -412,6 +412,12 @@ def e_mundial(n):
 
 def classificar(n):
     texto = sem_acentos(n["titulo"] + " " + n["resumo"]).lower()
+
+    # Rede de seguranca: materia de fofoca nao vira "Politica internacional"
+    # so porque nenhuma editoria combinou com ela.
+    if so_mundo_dos_artistas(n):
+        return "Misterios e investigacoes"
+
     pontos = {}
     for cat, palavras in PESOS.items():
         pontos[cat] = sum(peso for termo, peso in palavras.items()

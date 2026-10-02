@@ -41,8 +41,11 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Buscar as notícias e montar o site
+      - name: Buscar as notícias
         run: python buscar_noticias.py
+
+      - name: Criar as páginas de cada editoria
+        run: python gerar_paginas.py
 
       - name: Salvar as mudanças
         run: |
