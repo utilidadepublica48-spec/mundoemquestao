@@ -172,10 +172,13 @@ h2{font-family:var(--display);font-weight:700;font-size:1.5rem;letter-spacing:-.
 
 /* Duas colunas no computador: a primeira notícia ganha um cartão
    grande que ocupa três linhas de altura, e as outras ficam menores. */
-.feed{display:grid;grid-template-columns:1.4fr 1fr;gap:28px 40px}
-.lead{grid-row:span 3;align-self:start;background:var(--surface);border-radius:14px;padding:32px}
-.lead h3{font-family:var(--display);font-weight:800;font-size:clamp(1.6rem,3.2vw,2.3rem);line-height:1.12;letter-spacing:-.02em;margin:8px 0 14px}
-.lead p{font-size:1.1rem;color:var(--muted);margin:0}
+/* Duas colunas reais: a manchete numa, as demais na outra. Cada coluna
+   tem a altura do seu proprio conteudo, entao nunca sobrava nada. */
+.feed{display:grid;grid-template-columns:1.4fr 1fr;gap:28px 40px;align-items:start}
+.col-lista{display:flex;flex-direction:column;gap:20px}
+.lead{background:var(--surface);border-radius:14px;padding:32px}
+.lead h3{font-family:var(--display);font-weight:800;font-size:clamp(1.7rem,3.4vw,2.4rem);line-height:1.12;letter-spacing:-.02em;margin:10px 0 16px}
+.lead p{font-size:1.12rem;color:var(--muted);margin:0 0 4px;line-height:1.6}
 
 /* Fotos: arredondadas e proporcionais */
 .lead img,.item img{width:100%;height:auto;display:block;border-radius:10px;margin:0 0 14px;background:var(--line)}
@@ -222,6 +225,15 @@ h2{font-family:var(--display);font-weight:700;font-size:1.5rem;letter-spacing:-.
 .aviso{background:var(--surface);border-left:4px solid var(--accent);border-radius:8px;padding:16px 20px;margin-bottom:26px;font-size:.95rem}
 .aviso ul{margin:8px 0 0;padding-left:20px}
 
+.botao-mais{
+  grid-column:1/-1;justify-self:center;
+  margin-top:8px;padding:13px 30px;
+  font:600 1rem var(--display);color:var(--ink);
+  background:transparent;border:1.5px solid var(--line);
+  border-radius:999px;cursor:pointer;transition:border-color .15s;
+}
+.botao-mais:hover{border-color:var(--accent);color:var(--accent)}
+
 .vazio{grid-column:1/-1;background:var(--surface);border-radius:14px;padding:34px;text-align:center;color:var(--muted)}
 .info-topo{font-size:.92rem;color:var(--muted);margin:22px 0}
 
@@ -242,7 +254,7 @@ h2{font-family:var(--display);font-weight:700;font-size:1.5rem;letter-spacing:-.
   /* Correção importante: sem "grid-row:auto", o cartão da manchete
      continuaria ocupando três linhas de altura e sobraria um buraco
      enorme entre a primeira e a segunda notícia no celular. */
-  .lead{grid-row:auto;padding:22px}
+  .lead{padding:22px}
   .sobre{display:grid;grid-template-columns:1fr;gap:0}
 }
 </style>
@@ -331,6 +343,10 @@ let DADOS = null;      // todas as noticias
 let CATEGORIA = '';    // editoria escolhida ('' = todas)
 let FONTE = '';        // fonte escolhida ('' = todas)
 let BUSCA = '';        // palavra digitada na busca
+let todosVisiveis = [];    // a lista inteira quando o botao e clicado
+let mostrarTodas = false; // ja apertou "Ver mais"?
+const VISIVEIS_INICIAIS = 7;   // noticias no inicio: 1 manchete + 6 na coluna
+
 
 /* As 10 editorias, na ordem da secao "Seções".
    O primeiro valor e o nome interno (tem que bater com o que o
@@ -457,7 +473,8 @@ function montarListaSecoes(porCategoria) {
 function escolher(tipo, valor) {
   if (tipo === 'categoria') CATEGORIA = valor;
   else FONTE = valor;
-  montarFiltros();   // redesenha para atualizar o botao marcado
+  mostrarTodas = false;   // filtro novo comeca de novo, com poucas noticias
+  montarFiltros();
   mostrar();
 }
 
@@ -466,6 +483,7 @@ function irPara(categoria) {
   CATEGORIA = categoria;
   FONTE = '';
   BUSCA = '';
+  mostrarTodas = false;
   document.getElementById('busca').value = '';
   montarFiltros();
   mostrar();
@@ -490,6 +508,7 @@ function simplificar(texto) {
 
 document.getElementById('busca').oninput = e => {
   BUSCA = simplificar(e.target.value.trim());
+  mostrarTodas = false;   // busca nova comeca do inicio
   mostrar();
 };
 
@@ -515,7 +534,7 @@ function mostrar() {
   feed.innerHTML = '';
 
   // Aplica os tres filtros: editoria, fonte e busca por palavra
-  const visiveis = DADOS.noticias.filter(noticia => {
+  const filtradas = DADOS.noticias.filter(noticia => {
     if (CATEGORIA && noticia.categoria !== CATEGORIA) return false;
     if (FONTE && noticia.fonte !== FONTE) return false;
     if (BUSCA) {
@@ -525,8 +544,11 @@ function mostrar() {
     return true;
   });
 
+  const visiveis = mostrarTodas ? filtradas : filtradas.slice(0, VISIVEIS_INICIAIS);
+  const restantes = filtradas.length - visiveis.length;
+
   // Linha de informacao no topo
-  const partes = [visiveis.length + ' de ' + DADOS.total + ' notícias'];
+  const partes = [filtradas.length + ' de ' + DADOS.total + ' notícias'];
   if (CATEGORIA) partes.push('· ' + CATEGORIA);
   if (FONTE) partes.push('· ' + FONTE);
   if (BUSCA) partes.push('· busca: "' + BUSCA + '"');
@@ -564,9 +586,34 @@ function mostrar() {
   let destaque = visiveis.find(n => n.imagem) || visiveis[0];
   let indiceDestaque = visiveis.indexOf(destaque);
 
+  // Desenha as noticias: a manchete na primeira coluna, o resto na segunda.
+  // Sao sempre as MESMAS quantidades nas duas colunas, para que terminem
+  // na mesma altura. Sem isso, uma coluna ficaria muito mais curta e sobrava
+  // um vazio enorme embaixo da outra.
+  const lista = no('div', 'col-lista');
+  const metade = Math.ceil(visiveis.length / 2);
+
   visiveis.forEach((n, i) => {
-    feed.appendChild(i === indiceDestaque ? cartaoDestaque(n) : item(n));
+    if (i === indiceDestaque || i < metade) {
+      feed.appendChild(i === indiceDestaque ? cartaoDestaque(n) : item(n));
+    } else {
+      lista.appendChild(item(n));
+    }
   });
+  if (lista.children.length) feed.appendChild(lista);
+
+  // Botao para ver o resto
+  if (restantes > 0) {
+    const botao = no('button', 'botao-mais',
+      'Ver mais ' + restantes + (restantes === 1 ? ' notícia' : ' notícias'));
+    botao.type = 'button';
+    botao.onclick = () => {
+      mostrarTodas = true;
+      mostrar();
+      window.scrollTo({ top: feed.offsetTop - 70, behavior: 'smooth' });
+    };
+    feed.appendChild(botao);
+  }
 }
 
 function cartaoDestaque(noticia) {
