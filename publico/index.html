@@ -82,23 +82,11 @@ header.top nav a:hover{color:var(--accent)}
 }
 .hero p{max-width:34ch;margin:0;font-size:1.2rem;color:var(--muted)}
 
-/* O globo da capa: círculo com as linhas de meridiano e um ponto
-   dourado marcando "o que está acontecendo agora".
-   Desenhado só em CSS, para não depender de arquivo de imagem. */
+/* O logo do Mundo em Questão: globo com a rosa dos ventos e o anel de
+   metal dourado. É a imagem oficial do site (logo.svg). */
 .globo{
-  width:min(290px,70vw);aspect-ratio:1;justify-self:end;
-  border:2px solid var(--ink);border-radius:50%;position:relative;opacity:.9;
-}
-.globo::before{
-  content:"";position:absolute;inset:0;border-radius:50%;
-  background:
-    linear-gradient(90deg,transparent calc(50% - 1px),var(--line) calc(50% - 1px),var(--line) calc(50% + 1px),transparent calc(50% + 1px)),
-    linear-gradient(0deg,transparent calc(50% - 1px),var(--line) calc(50% - 1px),var(--line) calc(50% + 1px),transparent calc(50% + 1px));
-}
-.globo::after{
-  content:"";position:absolute;top:25%;right:19%;
-  width:11%;height:11%;background:var(--accent);border-radius:50%;
-  box-shadow:0 0 0 6px rgba(138,90,0,.18);
+  width:min(300px,74vw);justify-self:end;
+  filter:drop-shadow(0 12px 26px rgba(15,35,71,.30));
 }
 
 /* ---------------------------------------------------- seções */
@@ -140,6 +128,11 @@ h2{font-family:var(--display);font-weight:700;font-size:1.5rem;letter-spacing:-.
 /* Fotos: arredondadas e proporcionais */
 .lead img,.item img{width:100%;height:auto;display:block;border-radius:10px;margin:0 0 14px;background:var(--line)}
 .item img{margin:8px 0 12px}
+
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .globo{filter:drop-shadow(0 12px 30px rgba(0,0,0,.6)) brightness(1.12)}
+}
+:root[data-theme="dark"] .globo{filter:drop-shadow(0 12px 30px rgba(0,0,0,.6)) brightness(1.12)}
 
 .item{padding:0 0 22px;border-bottom:1px solid var(--line)}
 .item h3{font-family:var(--display);font-weight:700;font-size:1.15rem;line-height:1.25;margin:2px 0 6px}
@@ -217,7 +210,8 @@ h2{font-family:var(--display);font-weight:700;font-size:1.5rem;letter-spacing:-.
       <h1>Mundo em Questão</h1>
       <p>O que move o mundo, explicado em português, todo dia.</p>
     </div>
-    <div class="globo" aria-hidden="true"></div>
+    <img class="globo" src="logo.svg" width="300" height="300"
+         alt="Mundo em Questão: globo com rosa dos ventos">
   </div>
 
   <section id="boletim" aria-labelledby="h-boletim">
