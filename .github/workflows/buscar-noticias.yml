@@ -47,6 +47,9 @@ jobs:
       - name: Criar as páginas de cada editoria
         run: python gerar_paginas.py
 
+      - name: Conferir se o site está inteiro
+        run: python testar_site.py
+
       - name: Salvar as mudanças
         run: |
           git config user.name "atualizador automatico"
