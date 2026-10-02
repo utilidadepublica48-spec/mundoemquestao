@@ -25,21 +25,21 @@ DOMINIO = "https://www.mundoemquestao.com.br"
 
 # As 8 editorias do site: nome que aparece / parte do endereco / descricao
 EDITORIAS = [
-    {"nome": "Geopolitica", "url": "geopolitica",
-     "desc": "Diplomacia, aliancas e a tensao entre as grandes potencias."},
-    {"nome": "Guerras e conflitos", "url": "guerras-e-conflitos",
+    {"nome": "Geopolitica", "titulo": "Geopolítica", "url": "geopolitica",
+     "desc": "Diplomacia, aliancas e a tensao entre as grandes potencias. Quem puxa a corda e o que cada pais defende."},
+    {"nome": "Guerras e conflitos", "titulo": "Guerras e conflitos", "url": "guerras-e-conflitos",
      "desc": "Confrontos armados, territorio, forcas envolvidas e consequencias humanas."},
-    {"nome": "Politica internacional", "url": "politica-internacional",
+    {"nome": "Politica internacional", "titulo": "Política internacional", "url": "politica-internacional",
      "desc": "Governos, aliancas, elections e decisoes que afetam outros paises."},
-    {"nome": "Economia mundial", "url": "economia-mundial",
+    {"nome": "Economia mundial", "titulo": "Economia mundial", "url": "economia-mundial",
      "desc": "Petroleo, dolar, inflacao, comercio e sancoes."},
-    {"nome": "Historia", "url": "historia",
+    {"nome": "Historia", "titulo": "História", "url": "historia",
      "desc": "Acontecimentos antigos que ajudam a explicar os conflitos de hoje."},
-    {"nome": "Religioes e sociedade", "url": "religioes-e-sociedade",
+    {"nome": "Religioes e sociedade", "titulo": "Religiões e sociedade", "url": "religioes-e-sociedade",
      "desc": "Cristianismo, islamismo, judaísmo e outras tradicoes em seu contexto."},
-    {"nome": "Ciencia e tecnologia", "url": "ciencia-e-tecnologia",
+    {"nome": "Ciencia e tecnologia", "titulo": "Ciência e tecnologia", "url": "ciencia-e-tecnologia",
      "desc": "IA, espaco, energia nuclear, novas tecnologias e descobertas."},
-    {"nome": "Brasil no mundo", "url": "brasil-no-mundo",
+    {"nome": "Brasil no mundo", "titulo": "Brasil no mundo", "url": "brasil-no-mundo",
      "desc": "Como o que acontece fora chega aqui: economia, combustivel e politica."},
 ]
 
@@ -403,7 +403,7 @@ def montar_lista(noticias):
 
 def gerar_pagina(editoria, dados, pasta):
     url = "%s/%s/" % (DOMINIO, editoria["url"])
-    titulo = "%s — Mundo em Questão" % editoria["nome"]
+    titulo = "%s — Mundo em Questão" % editoria["titulo"]
     descricao = editoria["desc"]
 
     noticias = [n for n in dados["noticias"] if n["categoria"] == editoria["nome"]]
@@ -413,7 +413,7 @@ def gerar_pagina(editoria, dados, pasta):
         descricao=esc(descricao),
         url=esc(url),
         dominio=DOMINIO,
-        nome=esc(editoria["nome"]),
+        nome=esc(editoria["titulo"]),
         desc=esc(descricao),
         conteudo=montar_lista(noticias),
         total=len(dados["noticias"]),

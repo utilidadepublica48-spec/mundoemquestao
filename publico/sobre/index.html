@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -183,3 +184,190 @@ footer a { color: var(--ink2); }
 </div>
 </body>
 </html>
+=======
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Sobre — Mundo em Questão</title>
+<meta name="description" content="O que e o Mundo em Questao, para quem e e o que o leitor encontra aqui.">
+<link rel="canonical" href="https://www.mundoemquestao.com.br/sobre/">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+<meta name="theme-color" content="#0F2347">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Mundo em Questão">
+<meta property="og:title" content="Sobre — Mundo em Questão">
+<meta property="og:description" content="O que e o Mundo em Questao, para quem e e o que o leitor encontra aqui.">
+<meta property="og:url" content="https://www.mundoemquestao.com.br/sobre/">
+<meta property="og:image" content="https://www.mundoemquestao.com.br/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Sobre — Mundo em Questão">
+<meta name="twitter:description" content="O que e o Mundo em Questao, para quem e e o que o leitor encontra aqui.">
+<meta name="twitter:image" content="https://www.mundoemquestao.com.br/og.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* O visual e o mesmo da pagina principal: fundo creme, texto azul-marinho
+   e detalhes dourados. As fontes sao as duas mesmas. */
+:root {
+  --bg: #FBF7EF; --ink: #14284A; --ink2: #4A5B78; --line: #E3D9C6;
+  --ouro: #B8891F; --card: #FFFFFF; --sombra: 0 1px 2px rgba(20,40,74,.06);
+  --titulo: 'Bricolage Grotesque', system-ui, -apple-system, sans-serif;
+  --body: 'Source Serif 4', Georgia, serif;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: var(--body); font-size: 1.125rem; line-height: 1.65;
+}
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px 64px; }
+
+header.top {
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  padding: 18px 0; border-bottom: 1px solid var(--line); margin-bottom: 32px;
+}
+.marca {
+  display: flex; align-items: center; gap: 10px; text-decoration: none;
+  color: var(--ink); font-family: var(--titulo); font-weight: 800; font-size: 1.05rem;
+  min-height: 44px;
+}
+.marca-logo { width: 30px; height: 30px; }
+nav { margin-left: auto; }
+nav a {
+  color: var(--ink2); text-decoration: none; font-size: .95rem;
+  padding: 12px 12px; display: inline-block; min-height: 44px; line-height: 20px;
+}
+nav a:hover { color: var(--ouro); }
+nav a:focus-visible, .marca:focus-visible {
+  outline: 2px solid var(--ouro); outline-offset: 2px; border-radius: 4px;
+}
+
+.cabecalho-secao { margin-bottom: 28px; }
+h1 {
+  font-family: var(--titulo); font-weight: 800;
+  font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.05;
+  margin: 0 0 10px; letter-spacing: -.02em;
+}
+.desc-secao { color: var(--ink2); font-size: 1.1rem; max-width: 60ch; margin: 0; }
+.voltar { display: inline-flex; align-items: center; gap: 6px; color: var(--ouro);
+  text-decoration: none; font-size: .95rem; margin-bottom: 18px; min-height: 44px; }
+.voltar:hover { text-decoration: underline; }
+
+.texto { max-width: 68ch; }
+.texto p { font-size: 1.125rem; line-height: 1.7; color: var(--ink); margin: 0 0 18px; }
+.texto h2 {
+  font-family: var(--titulo); font-weight: 700; font-size: 1.4rem;
+  margin: 34px 0 12px; color: var(--ink);
+}
+.texto a { color: var(--ouro); }
+.texto strong { font-weight: 600; }
+
+.vazio {
+  background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+  padding: 32px; text-align: center; color: var(--ink2);
+}
+
+.item {
+  background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+  padding: 22px; margin-bottom: 16px; box-shadow: var(--sombra);
+}
+.item h2 {
+  font-family: var(--titulo); font-weight: 700; font-size: 1.3rem;
+  line-height: 1.25; margin: 0 0 8px; letter-spacing: -.01em;
+}
+.item h2 a { color: var(--ink); text-decoration: none; }
+.item h2 a:hover { color: var(--ouro); }
+.item p { margin: 0 0 12px; color: var(--ink2); max-width: 68ch; }
+.meta {
+  display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center;
+  font-size: .875rem; color: var(--ink2);
+}
+.meta .fonte { color: var(--ouro); font-weight: 600; }
+.meta a { color: var(--ink2); }
+.verificar {
+  display: inline-block; background: #FFF4D6; border: 1px solid #E8C766;
+  color: #7A5A08; font-size: .8125rem; padding: 2px 8px; border-radius: 6px;
+}
+footer {
+  border-top: 1px solid var(--line); margin-top: 40px; padding-top: 22px;
+  font-size: .875rem; color: var(--ink2);
+}
+footer a { color: var(--ink2); }
+.rodape-links { display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 10px; }
+.rodape-links a { min-height: 44px; display: inline-flex; align-items: center; }
+@media (max-width: 640px) {
+  .wrap { padding: 0 16px 48px; }
+  header.top { gap: 10px; }
+  nav { margin-left: 0; width: 100%; order: 3; }
+  .item { padding: 18px; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <a href="/" class="marca">
+      <img class="marca-logo" src="/logo.png" width="30" height="30" alt="">
+      <span>Mundo em Questão</span>
+    </a>
+    <nav aria-label="Principal">
+      <a href="/">Boletim</a>
+      <a href="/#secoes">Seções</a>
+      <a href="/sobre/">Sobre</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="cabecalho-secao">
+      <a href="/" class="voltar">&larr; Voltar ao boletim</a>
+      <h1>Sobre o Mundo em Questão</h1>
+      <p class="desc-secao">O que e o Mundo em Questao, para quem e e o que o leitor encontra aqui.</p>
+    </div>
+
+    <div class="texto">
+    <p>O Mundo em Questão é um boletim diário sobre o que acontece no mundo.
+       Ele reúne, em um só lugar, o que saiu nos veículos de newsdade reconhecidos —
+       geopolítica, guerras e conflitos, política internacional, economia,
+       história, religiões, ciência e tecnologia — e mostra como cada um desses
+       assuntos chega até o Brasil.</p>
+
+    <p>O site existe para quem quer entender o cenário internacional sem perder
+       horas. Em vez de abrir quinze portais, a pessoa lê o boletim, escolhe a
+       editoria que lhe interessa e clica em "Ler na fonte" para ir à matéria
+       original, sempre com o link e o nome do veículo.</p>
+
+    <p>A editoria <strong>Brasil no mundo</strong> é o diferencial: quase todo
+       aggregator trata o Brasil como mais um item da lista. Aqui ele é o fio
+       condutor. Uma guerra no Oriente Médio, uma mudança no preço do petróleo
+       ou uma sanção contra a China aparece junto com o que isso significa para
+       o combustível, a comida, o câmbio e a política externa daqui.</p>
+
+    <p>Nenhum texto original é copiado. Publicamos um recorte do resumo do
+       próprio veículo, com a fonte e o link ao lado, sempre.</p>
+  </div>
+  </main>
+
+  <footer>
+    <div class="rodape-links">
+      <a href="/">Boletim</a>
+      <a href="/sobre/">Sobre</a>
+      <a href="/como-apuramos/">Como apuramos</a>
+      <a href="/privacidade/">Privacidade</a>
+    </div>
+    <p>Mundo em Questão — 82 notícias de 8 veículos.
+       Atualizado em 2026-10-02 18:03. Todo o conteúdo vem dos veículos citados,
+       com o link para a matéria original. This software is a news aggregator;
+       nao reproduz os textos originais.</p>
+  </footer>
+
+</div>
+</body>
+</html>
+>>>>>>> cfe2f3f (SEO completo, manifesto PWA, menu do celular e paginas das editorias)
