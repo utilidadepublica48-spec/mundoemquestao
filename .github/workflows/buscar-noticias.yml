@@ -1,0 +1,58 @@
+# Atualiza o site do Mundo em Questão a cada 30 minutos.
+#
+# Isto roda nos servidores do GitHub, e não no seu computador. Por isso o
+# site continua funcionando mesmo com o seu PC desligado.
+#
+# O que acontece a cada rodada:
+#   1. Busca as notícias nos veículos configurados
+#   2. Baixa e reduz as fotos
+#   3. Grava o arquivo noticias.json com o resultado
+#   4. Salva a alteração neste repositório
+#
+# O Cloudflare busca o repositório sozinho e reconstrói o site.
+
+name: Atualizar o site
+
+# A cada 30 minutos, mais um agendamento manual que podemos usar na hora.
+on:
+  schedule:
+    - cron: '17,47 * * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+# Nunca duas rodadas ao mesmo tempo: uma termina antes da outra começar.
+concurrency:
+  group: atualizar-site
+  cancel-in-progress: false
+
+jobs:
+  buscar:
+    name: Buscar e salvar as notícias
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar o repositório
+        uses: actions/checkout@v4
+
+      - name: Instalar o Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Buscar as notícias e montar o site
+        run: python buscar_noticias.py
+
+      - name: Salvar as mudanças
+        run: |
+          git config user.name "atualizador automatico"
+          git config user.email "atualizador@users.noreply.github.com"
+          git add -A publico
+          if git diff --staged --quiet; then
+            echo "Nada mudou desde a ultima rodada."
+          else
+            git commit -m "Noticias atualizadas as $(date '+%Y-%m-%d %H:%M')"
+            git push
+            echo "Site atualizado."
+          fi
