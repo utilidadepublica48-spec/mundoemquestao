@@ -131,6 +131,24 @@ FORA_DO_TEMA = {
     "inss": 1, "meia passagem": 1, "shopping": 1,
     "vestibular": 1, "bolsa de estudos": 1, "enem": 1,
     "brasileirao": 1, "libertadores": 1, "campeonato": 1, "gol de": 1,
+    # Assunto brasileiro local, que nao e dos temas do blog (geopolitica,
+    # politica internacional, economia, historia, ciencia).
+    "tre oficializa": 1, "datafolha": 1, "quociente eleitoral": 1,
+    "candidatos a governador": 1, "candidato a senador": 1,
+    "candidato a deputado": 1, "candidato a vereador": 1,
+    "desistencia de": 1, "comite politico": 1, "comites politicos": 1,
+    "reuniao partidaria": 1, "convencao partidaria": 1,
+    "pesquisa eleitoral": 1, "intolerancia politica": 1,
+    "universidade federal": 1, "jantar intimista": 1, "aniversario em": 1,
+    "vaquinha": 1, "apto destruido": 1, "apartamento destruido": 1,
+    "incendio no df": 1, "bombeiros": 1,
+    "restaurante": 1, "show": 1, "concerto": 1, "bar": 1,
+    "feira de exposicao": 1, "feira do livro": 1, "feira deTunes": 1,
+    "classico contra": 1, "escalacao": 1, "ingressos": 1, "soccer": 1,
+    "exposicao": 1, "museu": 1, "students visitaram": 1, "estudantes visitaram": 1,
+    "meteorologia": 1, "tempestade": 1, "granizo": 1, "alerta para tempestade": 1,
+    "nations league": 1, "champions": 1, "uefa": 1, "mundial de": 1,
+    "temporada de": 1, "classificacao": 1, "jogos de": 1,
 }
 
 INDICIOS_MUNDO = {
@@ -169,6 +187,13 @@ INDICIOS_MUNDO = {
 }
 
 # Palavras que indicam assunto internacional (pesos mais fortes)
+# Os CINCO temas do blog sao geopolítica, politica internacional, economia
+# mundial, historia e ciencia. Eles tem peso dobrado abaixo, porque sao o
+# foco do site. As outras editorias (guerras, religioes, mistérios, Brasil no
+# mundo) continuam existindo, mas nao devem tomar o espaco delas.
+FOCO = ("Geopolitica", "Politica internacional", "Economia mundial",
+        "Historia", "Ciencia e tecnologia")
+
 PESOS = {
     "Geopolitica": {"geopolitica": 6, "diplomacia": 5, "diplomatico": 5, "nato": 5,
         "onu": 4, "tratado": 4, "alianca": 4, "uniao europeia": 4, "g20": 4,
@@ -206,10 +231,16 @@ PESOS = {
         "agente secreto": 6, "cibernetica": 5, "hack": 4, "vazamento de dados": 5,
         "wikileaks": 6, "desinformacao": 5, "desinformação": 5, "corrupcao": 3,
         "corrupção": 3, "revelações": 5, "revelacoes": 5},
-    "Brasil no mundo": {"brasil": 6, "brasileiro": 6, "brasileira": 6, "lula": 5,
+    # "Brasil" sozinho e palavrao fraca: quase toda noticia do G1 Mundo
+    # menciona o Brasil de passagem, e isso nao faz dela noticia sobre o
+    # Brasil. O que define a editoria e a RELACAO com o exterior.
+    "Brasil no mundo": {"itamaraty": 6, "lula": 5,
         "itamaraty": 5, "petrobras": 4, "planalto": 4, "brasilia": 4,
         "combustível": 4, "gasolina": 3, "alimentos": 3, "câmbio": 4, "cambio": 4,
-        "relacoes exteriores": 4, "exportação brasileira": 5, "stf": 4, "stj": 4},
+        "relacoes exteriores": 5, "exportação brasileira": 5,
+        "plano diretor": 4, "sanção contra": 4,
+        "acordo comercial": 4, "sobre o brasil": 4, "ao brasil": 3,
+        "tributar": 4, "imposto": 3, "tarifa": 4},
 }
 
 ORDEM = ["Geopolitica", "Guerras e conflitos", "Politica internacional",
@@ -429,9 +460,18 @@ def classificar(n):
     for cat, palavras in PESOS.items():
         pontos[cat] = sum(peso for termo, peso in palavras.items()
                           if tem_palavra(texto, termo))
+    # Dobra o peso dos cinco temas do blog antes de escolher a editoria.
+    for foco in FOCO:
+        pontos[foco] = pontos.get(foco, 0) * 2
+
     melhor = max(pontos, key=lambda c: pontos[c])
+
+    # Se nenhuma editoria combinou, a materia nao serve para este site.
+    # Antes caia em "Politica internacional" e virava o carrinho de lixo:
+    # vaquinha de incendio,(lua de polpicos e shows de-rock entravam como
+    # se fossem politica internacional. Agora e descartada.
     if pontos[melhor] == 0:
-        return "Politica internacional"
+        return ""
     if pontos.get("Brasil no mundo", 0) >= pontos[melhor]:
         return "Brasil no mundo"
     return melhor
@@ -641,6 +681,14 @@ def main():
                              for o in g[1:]],
             "verificar": verificar, "imagem": p.get("imagem"),
         })
+
+    # Materia que nenhuma editoria reconheceu nao entra no site. Antes
+    # elas apareciam com o rotulo "Politica internacional", que nao era
+    # verdade: eram assuntos locais, deultura ou de-Moda.
+    sem_editoria = [n for n in resultado if not n["categoria"]]
+    resultado = [n for n in resultado if n["categoria"]]
+    for i, n in enumerate(resultado, start=1):
+        n["id"] = i
 
     resultado.sort(key=lambda n: n["timestamp"], reverse=True)
 
