@@ -25,7 +25,7 @@ import urllib.request
 import urllib.error
 import unicodedata
 import xml.etree.ElementTree as ET
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from email.utils import parsedate_to_datetime
 from difflib import SequenceMatcher
 from html import unescape
@@ -39,6 +39,13 @@ MAX_POR_FONTE = 30
 LIMITE_LARGURA = 1600
 LIMITE_FOTOS = 16          # quantas fotos baixar por rodada
 ALTURA_RODADA = 6 * 60      # 6 minutos: se passar disso, a rodada para
+
+# O horario do site e o de Brasilia (UTC-3), e nao o do servidor.
+#
+# O GitHub roda em UTC. Sem esta conversao, o site mostrava 3 horas a mais
+# do que a hora real aqui dentro: as 19:28 aparecia como 22:28.
+# O Brasil nao tem horario de verao desde 2019, entao UTC-3 vale o ano todo.
+FUSO = timezone(timedelta(hours=-3))
 
 FONTES = [
     {"nome": "G1 Mundo", "url": "https://g1.globo.com/rss/g1/mundo/", "maximo": 14},
@@ -588,7 +595,7 @@ def limpar_fotos(usados):
 
 def main():
     inicio = time.time()
-    agora = datetime.now()
+    agora = datetime.now(FUSO)
     print("Buscando as noticias...")
 
     noticias, erros = [], []
@@ -623,7 +630,10 @@ def main():
         resultado.append({
             "id": len(resultado) + 1,
             "titulo": p["titulo"], "resumo": resumo, "fonte": p["fonte"],
-            "link": p["link"], "quando": (p["quando"] or agora).strftime(
+            "link": p["link"],
+            # A hora tambem vem em UTC do feed. Sem converter, o horario de
+            # cada noticia aparecia adiantado em tres horas.
+            "quando": (p["quando"] or agora).astimezone(FUSO).strftime(
                 "%Y-%m-%d %H:%M"),
             "timestamp": (p["quando"] or agora).timestamp(),
             "categoria": classificar(p),
