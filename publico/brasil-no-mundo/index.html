@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Brasil no mundo — Mundo em Questão</title>
+<meta name="description" content="Como o que acontece fora chega aqui: economia, combustivel e politica.">
+<link rel="canonical" href="https://www.mundoemquestao.com.br/brasil-no-mundo/">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+<meta name="theme-color" content="#0F2347">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Mundo em Questão">
+<meta property="og:title" content="Brasil no mundo — Mundo em Questão">
+<meta property="og:description" content="Como o que acontece fora chega aqui: economia, combustivel e politica.">
+<meta property="og:url" content="https://www.mundoemquestao.com.br/brasil-no-mundo/">
+<meta property="og:image" content="https://www.mundoemquestao.com.br/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Brasil no mundo — Mundo em Questão">
+<meta name="twitter:description" content="Como o que acontece fora chega aqui: economia, combustivel e politica.">
+<meta name="twitter:image" content="https://www.mundoemquestao.com.br/og.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* O visual e o mesmo da pagina principal: fundo creme, texto azul-marinho
+   e detalhes dourados. As fontes sao as duas mesmas. */
+:root {
+  --bg: #FBF7EF; --ink: #14284A; --ink2: #4A5B78; --line: #E3D9C6;
+  --ouro: #B8891F; --card: #FFFFFF; --sombra: 0 1px 2px rgba(20,40,74,.06);
+  --titulo: 'Bricolage Grotesque', system-ui, -apple-system, sans-serif;
+  --body: 'Source Serif 4', Georgia, serif;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: var(--body); font-size: 1.125rem; line-height: 1.65;
+}
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px 64px; }
+
+header.top {
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  padding: 18px 0; border-bottom: 1px solid var(--line); margin-bottom: 32px;
+}
+.marca {
+  display: flex; align-items: center; gap: 10px; text-decoration: none;
+  color: var(--ink); font-family: var(--titulo); font-weight: 800; font-size: 1.05rem;
+  min-height: 44px;
+}
+.marca-logo { width: 30px; height: 30px; }
+nav { margin-left: auto; }
+nav a {
+  color: var(--ink2); text-decoration: none; font-size: .95rem;
+  padding: 12px 12px; display: inline-block; min-height: 44px; line-height: 20px;
+}
+nav a:hover { color: var(--ouro); }
+nav a:focus-visible, .marca:focus-visible {
+  outline: 2px solid var(--ouro); outline-offset: 2px; border-radius: 4px;
+}
+
+.cabecalho-secao { margin-bottom: 28px; }
+h1 {
+  font-family: var(--titulo); font-weight: 800;
+  font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.05;
+  margin: 0 0 10px; letter-spacing: -.02em;
+}
+.desc-secao { color: var(--ink2); font-size: 1.1rem; max-width: 60ch; margin: 0; }
+.voltar { display: inline-flex; align-items: center; gap: 6px; color: var(--ouro);
+  text-decoration: none; font-size: .95rem; margin-bottom: 18px; min-height: 44px; }
+.voltar:hover { text-decoration: underline; }
+
+.texto { max-width: 68ch; }
+.texto p { font-size: 1.125rem; line-height: 1.7; color: var(--ink); margin: 0 0 18px; }
+.texto h2 {
+  font-family: var(--titulo); font-weight: 700; font-size: 1.4rem;
+  margin: 34px 0 12px; color: var(--ink);
+}
+.texto a { color: var(--ouro); }
+.texto strong { font-weight: 600; }
+
+.vazio {
+  background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+  padding: 32px; text-align: center; color: var(--ink2);
+}
+
+.item {
+  background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+  padding: 22px; margin-bottom: 16px; box-shadow: var(--sombra);
+}
+.item h2 {
+  font-family: var(--titulo); font-weight: 700; font-size: 1.3rem;
+  line-height: 1.25; margin: 0 0 8px; letter-spacing: -.01em;
+}
+.item h2 a { color: var(--ink); text-decoration: none; }
+.item h2 a:hover { color: var(--ouro); }
+.item p { margin: 0 0 12px; color: var(--ink2); max-width: 68ch; }
+.meta {
+  display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center;
+  font-size: .875rem; color: var(--ink2);
+}
+.meta .fonte { color: var(--ouro); font-weight: 600; }
+.meta a { color: var(--ink2); }
+.verificar {
+  display: inline-block; background: #FFF4D6; border: 1px solid #E8C766;
+  color: #7A5A08; font-size: .8125rem; padding: 2px 8px; border-radius: 6px;
+}
+footer {
+  border-top: 1px solid var(--line); margin-top: 40px; padding-top: 22px;
+  font-size: .875rem; color: var(--ink2);
+}
+footer a { color: var(--ink2); }
+.rodape-links { display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 10px; }
+.rodape-links a { min-height: 44px; display: inline-flex; align-items: center; }
+@media (max-width: 640px) {
+  .wrap { padding: 0 16px 48px; }
+  header.top { gap: 10px; }
+  nav { margin-left: 0; width: 100%; order: 3; }
+  .item { padding: 18px; }
+}
+</style>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Brasil no mundo — Mundo em Questão",
+  "description": "Como o que acontece fora chega aqui: economia, combustivel e politica.",
+  "url": "https://www.mundoemquestao.com.br/brasil-no-mundo/",
+  "inLanguage": "pt-BR",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Mundo em Questão",
+    "url": "https://www.mundoemquestao.com.br"
+  },
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "NewsArticle",
+        "headline": "Ex-embaixador: Suspender consulados é via indireta de interferir na eleição",
+        "datePublished": "2026-10-02T12:43:00-03:00",
+        "description": "A suspensão temporária de serviços consulares e da embaixada dos EUA no Brasil passa uma mensagem de insegurança e é uma tentativa de interferência indireta nas eleições, disse o ex-embaixador brasileiro em Washington Rubens Barbosa, no UOL News, do Canal UOL.",
+        "mainEntityOfPage": "https://noticias.uol.com.br/politica/ultimas-noticias/2026/10/02/suspender-consulados-e-via-indireta-de-interferir-na-eleicao-diz-rubens-barbosa.ghtm",
+        "image": [
+          "https://www.mundoemquestao.com.br/og.png"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "UOL Noticias",
+          "url": "https://www.mundoemquestao.com.br"
+        }
+      },
+      {
+        "@type": "NewsArticle",
+        "headline": "Barcelona descarta lesão grave em Raphinha após dispensa da Seleção",
+        "datePublished": "2026-10-02T15:27:00-03:00",
+        "description": "Raphinha teve um edema muscular na coxa direita após o segundo jogo contra a Austrália e foi liberado da Seleção Brasileira",
+        "mainEntityOfPage": "https://www.metropoles.com/esportes/barcelona-descarta-lesao-grave-em-raphinha-apos-dispensa-da-selecao",
+        "image": [
+          "https://www.mundoemquestao.com.br/fotos/n12.jpg"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "Metropoles",
+          "url": "https://www.mundoemquestao.com.br"
+        }
+      },
+      {
+        "@type": "NewsArticle",
+        "headline": "Clique aqui",
+        "datePublished": "2026-10-02T14:57:00-03:00",
+        "description": "Confira as estimativas de votos para Eleição 2026 no Agregador da BBC News Brasil",
+        "mainEntityOfPage": "https://www.bbc.com/portuguese/articles/czd2prld130o?at_medium=RSS&amp;at_campaign=rss",
+        "image": [
+          "https://www.mundoemquestao.com.br/fotos/n15.png"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "BBC News Brasil",
+          "url": "https://www.mundoemquestao.com.br"
+        }
+      },
+      {
+        "@type": "NewsArticle",
+        "headline": "O que os governos dos EUA e da Austrália dizem sobre fechamento de embaixadas e consulados no Brasil às vésperas da eleição",
+        "datePublished": "2026-10-02T13:54:00-03:00",
+        "description": "Escritórios localizados em Brasília, São Paulo, Rio de Janeiro, Porto Alegre, Recife e Belo Horizonte estão todos fechados; ",
+        "mainEntityOfPage": "https://www.bbc.com/portuguese/articles/cmewellkk7zyo?at_medium=RSS&amp;at_campaign=rss",
+        "image": [
+          "https://www.mundoemquestao.com.br/fotos/n18.jpg"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "BBC News Brasil",
+          "url": "https://www.mundoemquestao.com.br"
+        }
+      },
+      {
+        "@type": "NewsArticle",
+        "headline": "Preferência por Lula, cautela ao criticar Flávio: como a China (e a imprensa local) vê a eleição no Brasil",
+        "datePublished": "2026-10-02T13:41:00-03:00",
+        "description": "Jornais chineses — que são fortemente controlados pelo governo de Pequim — destacam que economia é determinante nas relações entre Brasil e China, independentemente de o presidente ser de esquerda ou direita.",
+        "mainEntityOfPage": "https://www.bbc.com/portuguese/articles/c693e0lddp4po?at_medium=RSS&amp;at_campaign=rss",
+        "image": [
+          "https://www.mundoemquestao.com.br/fotos/n19.jpg"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "BBC News Brasil",
+          "url": "https://www.mundoemquestao.com.br"
+        }
+      },
+      {
+        "@type": "NewsArticle",
+        "headline": "EUA e Austrália suspendem atendimento em consulados e embaixada no Brasil e citam &#x27;questão de segurança&#x27;",
+        "datePublished": "2026-10-02T11:29:00-03:00",
+        "description": "O governo dos Estados Unidos suspendeu o atendimento em embaixadas e consulados no Brasil a partir desta sexta-feira (2). ",
+        "mainEntityOfPage": "https://redir.folha.com.br/redir/online/mundo/rss091/*https://www1.folha.uol.com.br/mundo/2026/10/eua-suspendem-atendimento-em-consulados-e-embaixada-no-brasil-nesta-sexta-feira.shtml",
+        "image": [
+          "https://f.i.uol.com.br/fotografia/2026/10/02/17909521546abfc2da200ea_1790952154_3x2_xl.jpg"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "Folha de S.Paulo - Mundo",
+          "url": "https://www.mundoemquestao.com.br"
+        }
+      },
+      {
+        "@type": "NewsArticle",
+        "headline": "BBC News Brasil fará cobertura AO VIVO no dia da eleição, com apuração e resultados do primeiro turno",
+        "datePublished": "2026-10-02T09:03:00-03:00",
+        "description": "No domingo, dia da eleição, a cobertura em tempo real — na página da BBC News Brasil — começa cedo, às 7h30, no horário de Brasília, acompanhando a abertura das urnas, o clima da votação e os principais acontecimentos do dia.",
+        "mainEntityOfPage": "https://www.bbc.com/portuguese/articles/cvj64l9408k0o?at_medium=RSS&amp;at_campaign=rss",
+        "image": [
+          "https://ichef.bbci.co.uk/ace/ws/1536/cpsprodpb/cd6e/live/8c8a7c90-bcb3-11f1-a64c-550be9e3c66b.png"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "BBC News Brasil",
+          "url": "https://www.mundoemquestao.com.br"
+        }
+      },
+      {
+        "@type": "NewsArticle",
+        "headline": "UE considera &#x27;difícil&#x27; liberar carne brasileira antes de 2 anos, diz representante do bloco ao g1",
+        "datePublished": "2026-10-02T08:00:00-03:00",
+        "description": "Chefe-adjunto da Delegação da UE no Brasil, Jean-Pierre Bou. ",
+        "mainEntityOfPage": "https://g1.globo.com/economia/agronegocios/noticia/2026/10/02/ue-considera-dificil-liberar-carne-brasileira-antes-de-2-anos-diz-representante-do-bloco-ao-g1.ghtml",
+        "image": [
+          "https://s2-g1.glbimg.com/I6XsUhW9nYhWV_Ng4gaiojAJO_A=/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2026/P/m/4tX70KQWm2RJUh0yBuqQ/foto-original-1200x800.png"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "G1 Mundo",
+          "url": "https://www.mundoemquestao.com.br"
+        }
+      },
+      {
+        "@type": "NewsArticle",
+        "headline": "Trump corta dinheiro para a Europa e manda para a América Latina, diz jornal",
+        "datePublished": "2026-10-02T03:00:00-03:00",
+        "description": "Trump diz que eleição brasileira é muito importante O governo do presidente dos Estados Unidos, Donald Trump, está redirecionando para países da América Latina recursos que haviam sido aprovados para ajudar aliados na Europa e no Oriente Médio. ",
+        "mainEntityOfPage": "https://g1.globo.com/mundo/noticia/2026/10/02/trump-corta-dinheiro-para-a-europa-e-manda-para-a-america-latina-diz-jornal.ghtml",
+        "image": [
+          "https://s2-g1.glbimg.com/sdE9aSiizw_R34ZdbnslAxWdLpo=/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2026/1/7/HONXx0RRaFdfnF6ok09Q/2026-09-28t183155z-928253705-rc2isna9n4vm-rtrmadp-3-usa-trump-steel.jpg"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "G1 Mundo",
+          "url": "https://www.mundoemquestao.com.br"
+        }
+      },
+      {
+        "@type": "NewsArticle",
+        "headline": "Caso de brasileiro leva Suprema Corte dos EUA a revisar detenções de imigrantes sem fiança",
+        "datePublished": "2026-10-01T19:59:00-03:00",
+        "description": "Brasileira é detida pelo ICE em aeroporto nos EUA, diz família A Suprema Corte dos Estados Unidos anunciou, nesta quinta-feira (1º), que vai analisar se o governo do presidente Donald Trump pode negar a imigrantes que enfrentam processos de deportação o direito de solicitar liber",
+        "mainEntityOfPage": "https://g1.globo.com/mundo/noticia/2026/10/01/caso-de-brasileiro-leva-suprema-corte-dos-eua-a-revisar-detencoes-de-imigrantes-sem-fianca.ghtml",
+        "image": [
+          "https://s2-g1.glbimg.com/FSmgfSvI8FuaJC9f-dZkAQTTvzY=/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2026/9/9/ScMZBNRTSIQsFO0yXoMg/ice.jpg"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "G1 Mundo",
+          "url": "https://www.mundoemquestao.com.br"
+        }
+      },
+      {
+        "@type": "NewsArticle",
+        "headline": "Por que estamos, ao mesmo tempo, ficando mais e menos saudáveis?",
+        "datePublished": "2026-09-29T07:00:00-03:00",
+        "description": "Uma pesquisa recente realizada nos Estados Unidos apresentou um cenário aparentemente contraditório. ",
+        "mainEntityOfPage": "https://g1.globo.com/bemestar/blog/longevidade-modo-de-usar/post/2026/09/29/por-que-estamos-ao-mesmo-tempo-ficando-mais-e-menos-saudaveis.ghtml",
+        "image": [
+          "https://s2-g1.glbimg.com/ih-jV5RLiDtVZBDikOChiP4d9DY=/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2026/u/S/0Fr3tBTYWjSsYBU3V7gg/saudemaisemenosaomesmotempo.jpg"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "G1 Ciencia",
+          "url": "https://www.mundoemquestao.com.br"
+        }
+      },
+      {
+        "@type": "NewsArticle",
+        "headline": "Calendário lunar de outubro: veja quando a Lua muda de fase e os principais eventos do mês",
+        "datePublished": "2026-09-29T03:00:00-03:00",
+        "description": "Imagem composta de sete fotografias separadas, tiradas com uma única câmera fixa, mostra as fases da lua durante um eclipse lunar parcial sobre a ilha de Gran Canaria. ",
+        "mainEntityOfPage": "https://g1.globo.com/ciencia/noticia/2026/09/29/calendario-lua-outubro.ghtml",
+        "image": [
+          "https://s2-g1.glbimg.com/y117MaNd76sBPcr84tt0pSmOjtY=/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2026/d/Q/BUgWnzQ5OrQuigbaCnwQ/2026-08-28t060210z-1074805439-rc2h7napqua6-rtrmadp-3-lunar-eclipse-spain.jpg"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "G1 Ciencia",
+          "url": "https://www.mundoemquestao.com.br"
+        }
+      }
+    ]
+  }
+}</script>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <a href="/" class="marca">
+      <img class="marca-logo" src="/logo.png" width="30" height="30" alt="">
+      <span>Mundo em Questão</span>
+    </a>
+    <nav aria-label="Principal">
+      <a href="/">Boletim</a>
+      <a href="/#secoes">Seções</a>
+      <a href="/sobre/">Sobre</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="cabecalho-secao">
+      <a href="/" class="voltar">&larr; Voltar ao boletim</a>
+      <h1>Brasil no mundo</h1>
+      <p class="desc-secao">Como o que acontece fora chega aqui: economia, combustivel e politica.</p>
+    </div>
+
+    <article class="item"><h2><a href="https://noticias.uol.com.br/politica/ultimas-noticias/2026/10/02/suspender-consulados-e-via-indireta-de-interferir-na-eleicao-diz-rubens-barbosa.ghtm">Ex-embaixador: Suspender consulados é via indireta de interferir na eleição</a></h2><p>A suspensão temporária de serviços consulares e da embaixada dos EUA no Brasil passa uma mensagem de insegurança e é uma tentativa de interferência indireta nas eleições, disse o ex-embaixador brasileiro em Washington Rubens Barbosa, no UOL News, do Canal UOL.</p><div class="meta"><span>2026-10-02 12:43</span><span class="fonte">UOL Noticias</span><a href="https://noticias.uol.com.br/politica/ultimas-noticias/2026/10/02/suspender-consulados-e-via-indireta-de-interferir-na-eleicao-diz-rubens-barbosa.ghtm" target="_blank" rel="noopener noreferrer">Ler na fonte &rarr;</a></div></article><article class="item"><img src="/fotos/n12.jpg" alt="" loading="lazy" width="640" height="360" style="width:100%;height:auto;border-radius:10px;margin-bottom:14px"><h2><a href="https://www.metropoles.com/esportes/barcelona-descarta-lesao-grave-em-raphinha-apos-dispensa-da-selecao">Barcelona descarta lesão grave em Raphinha após dispensa da Seleção</a></h2><p>Raphinha teve um edema muscular na coxa direita após o segundo jogo contra a Austrália e foi liberado da Seleção Brasileira</p><div class="meta"><span>2026-10-02 15:27</span><span class="fonte">Metropoles</span><a href="https://www.metropoles.com/esportes/barcelona-descarta-lesao-grave-em-raphinha-apos-dispensa-da-selecao" target="_blank" rel="noopener noreferrer">Ler na fonte &rarr;</a></div></article><article class="item"><img src="/fotos/n15.png" alt="" loading="lazy" width="640" height="360" style="width:100%;height:auto;border-radius:10px;margin-bottom:14px"><h2><a href="https://www.bbc.com/portuguese/articles/czd2prld130o?at_medium=RSS&amp;at_campaign=rss">Clique aqui</a></h2><p>Confira as estimativas de votos para Eleição 2026 no Agregador da BBC News Brasil</p><div class="meta"><span>2026-10-02 14:57</span><span class="fonte">BBC News Brasil</span><a href="https://www.bbc.com/portuguese/articles/czd2prld130o?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener noreferrer">Ler na fonte &rarr;</a></div></article><article class="item"><img src="/fotos/n18.jpg" alt="" loading="lazy" width="640" height="360" style="width:100%;height:auto;border-radius:10px;margin-bottom:14px"><h2><a href="https://www.bbc.com/portuguese/articles/cmewellkk7zyo?at_medium=RSS&amp;at_campaign=rss">O que os governos dos EUA e da Austrália dizem sobre fechamento de embaixadas e consulados no Brasil às vésperas da eleição</a></h2><p>Escritórios localizados em Brasília, São Paulo, Rio de Janeiro, Porto Alegre, Recife e Belo Horizonte estão todos fechados; </p><div class="meta"><span>2026-10-02 13:54</span><span class="fonte">BBC News Brasil</span><a href="https://www.bbc.com/portuguese/articles/cmewellkk7zyo?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener noreferrer">Ler na fonte &rarr;</a></div></article><article class="item"><img src="/fotos/n19.jpg" alt="" loading="lazy" width="640" height="360" style="width:100%;height:auto;border-radius:10px;margin-bottom:14px"><h2><a href="https://www.bbc.com/portuguese/articles/c693e0lddp4po?at_medium=RSS&amp;at_campaign=rss">Preferência por Lula, cautela ao criticar Flávio: como a China (e a imprensa local) vê a eleição no Brasil</a></h2><p>Jornais chineses — que são fortemente controlados pelo governo de Pequim — destacam que economia é determinante nas relações entre Brasil e China, independentemente de o presidente ser de esquerda ou direita.</p><div class="meta"><span>2026-10-02 13:41</span><span class="fonte">BBC News Brasil</span><a href="https://www.bbc.com/portuguese/articles/c693e0lddp4po?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener noreferrer">Ler na fonte &rarr;</a></div></article><article class="item"><img src="/https://f.i.uol.com.br/fotografia/2026/10/02/17909521546abfc2da200ea_1790952154_3x2_xl.jpg" alt="" loading="lazy" width="640" height="360" style="width:100%;height:auto;border-radius:10px;margin-bottom:14px"><h2><a href="https://redir.folha.com.br/redir/online/mundo/rss091/*https://www1.folha.uol.com.br/mundo/2026/10/eua-suspendem-atendimento-em-consulados-e-embaixada-no-brasil-nesta-sexta-feira.shtml">EUA e Austrália suspendem atendimento em consulados e embaixada no Brasil e citam &#x27;questão de segurança&#x27;</a></h2><p>O governo dos Estados Unidos suspendeu o atendimento em embaixadas e consulados no Brasil a partir desta sexta-feira (2). </p><div class="meta"><span>2026-10-02 11:29</span><span class="fonte">Folha de S.Paulo - Mundo</span><a href="https://redir.folha.com.br/redir/online/mundo/rss091/*https://www1.folha.uol.com.br/mundo/2026/10/eua-suspendem-atendimento-em-consulados-e-embaixada-no-brasil-nesta-sexta-feira.shtml" target="_blank" rel="noopener noreferrer">Ler na fonte &rarr;</a><span>Também em: G1 Mundo</span></div></article><article class="item"><img src="/https://ichef.bbci.co.uk/ace/ws/1536/cpsprodpb/cd6e/live/8c8a7c90-bcb3-11f1-a64c-550be9e3c66b.png" alt="" loading="lazy" width="640" height="360" style="width:100%;height:auto;border-radius:10px;margin-bottom:14px"><h2><a href="https://www.bbc.com/portuguese/articles/cvj64l9408k0o?at_medium=RSS&amp;at_campaign=rss">BBC News Brasil fará cobertura AO VIVO no dia da eleição, com apuração e resultados do primeiro turno</a></h2><p>No domingo, dia da eleição, a cobertura em tempo real — na página da BBC News Brasil — começa cedo, às 7h30, no horário de Brasília, acompanhando a abertura das urnas, o clima da votação e os principais acontecimentos do dia.</p><div class="meta"><span>2026-10-02 09:03</span><span class="fonte">BBC News Brasil</span><a href="https://www.bbc.com/portuguese/articles/cvj64l9408k0o?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener noreferrer">Ler na fonte &rarr;</a></div></article><article class="item"><img src="/https://s2-g1.glbimg.com/I6XsUhW9nYhWV_Ng4gaiojAJO_A=/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2026/P/m/4tX70KQWm2RJUh0yBuqQ/foto-original-1200x800.png" alt="" loading="lazy" width="640" height="360" style="width:100%;height:auto;border-radius:10px;margin-bottom:14px"><h2><a href="https://g1.globo.com/economia/agronegocios/noticia/2026/10/02/ue-considera-dificil-liberar-carne-brasileira-antes-de-2-anos-diz-representante-do-bloco-ao-g1.ghtml">UE considera &#x27;difícil&#x27; liberar carne brasileira antes de 2 anos, diz representante do bloco ao g1</a></h2><p>Chefe-adjunto da Delegação da UE no Brasil, Jean-Pierre Bou. </p><div class="meta"><span>2026-10-02 08:00</span><span class="fonte">G1 Mundo</span><a href="https://g1.globo.com/economia/agronegocios/noticia/2026/10/02/ue-considera-dificil-liberar-carne-brasileira-antes-de-2-anos-diz-representante-do-bloco-ao-g1.ghtml" target="_blank" rel="noopener noreferrer">Ler na fonte &rarr;</a></div></article><article class="item"><img src="/https://s2-g1.glbimg.com/sdE9aSiizw_R34ZdbnslAxWdLpo=/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2026/1/7/HONXx0RRaFdfnF6ok09Q/2026-09-28t183155z-928253705-rc2isna9n4vm-rtrmadp-3-usa-trump-steel.jpg" alt="" loading="lazy" width="640" height="360" style="width:100%;height:auto;border-radius:10px;margin-bottom:14px"><h2><a href="https://g1.globo.com/mundo/noticia/2026/10/02/trump-corta-dinheiro-para-a-europa-e-manda-para-a-america-latina-diz-jornal.ghtml">Trump corta dinheiro para a Europa e manda para a América Latina, diz jornal</a></h2><p>Trump diz que eleição brasileira é muito importante O governo do presidente dos Estados Unidos, Donald Trump, está redirecionando para países da América Latina recursos que haviam sido aprovados para ajudar aliados na Europa e no Oriente Médio. </p><div class="meta"><span>2026-10-02 03:00</span><span class="fonte">G1 Mundo</span><a href="https://g1.globo.com/mundo/noticia/2026/10/02/trump-corta-dinheiro-para-a-europa-e-manda-para-a-america-latina-diz-jornal.ghtml" target="_blank" rel="noopener noreferrer">Ler na fonte &rarr;</a></div></article><article class="item"><img src="/https://s2-g1.glbimg.com/FSmgfSvI8FuaJC9f-dZkAQTTvzY=/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2026/9/9/ScMZBNRTSIQsFO0yXoMg/ice.jpg" alt="" loading="lazy" width="640" height="360" style="width:100%;height:auto;border-radius:10px;margin-bottom:14px"><h2><a href="https://g1.globo.com/mundo/noticia/2026/10/01/caso-de-brasileiro-leva-suprema-corte-dos-eua-a-revisar-detencoes-de-imigrantes-sem-fianca.ghtml">Caso de brasileiro leva Suprema Corte dos EUA a revisar detenções de imigrantes sem fiança</a></h2><p>Brasileira é detida pelo ICE em aeroporto nos EUA, diz família A Suprema Corte dos Estados Unidos anunciou, nesta quinta-feira (1º), que vai analisar se o governo do presidente Donald Trump pode negar a imigrantes que enfrentam processos de deportação o direito de solicitar liberdade sob fiança. </p><div class="meta"><span>2026-10-01 19:59</span><span class="fonte">G1 Mundo</span><a href="https://g1.globo.com/mundo/noticia/2026/10/01/caso-de-brasileiro-leva-suprema-corte-dos-eua-a-revisar-detencoes-de-imigrantes-sem-fianca.ghtml" target="_blank" rel="noopener noreferrer">Ler na fonte &rarr;</a></div></article><article class="item"><img src="/https://s2-g1.glbimg.com/ih-jV5RLiDtVZBDikOChiP4d9DY=/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2026/u/S/0Fr3tBTYWjSsYBU3V7gg/saudemaisemenosaomesmotempo.jpg" alt="" loading="lazy" width="640" height="360" style="width:100%;height:auto;border-radius:10px;margin-bottom:14px"><h2><a href="https://g1.globo.com/bemestar/blog/longevidade-modo-de-usar/post/2026/09/29/por-que-estamos-ao-mesmo-tempo-ficando-mais-e-menos-saudaveis.ghtml">Por que estamos, ao mesmo tempo, ficando mais e menos saudáveis?</a></h2><p>Uma pesquisa recente realizada nos Estados Unidos apresentou um cenário aparentemente contraditório. </p><div class="meta"><span>2026-09-29 07:00</span><span class="fonte">G1 Ciencia</span><a href="https://g1.globo.com/bemestar/blog/longevidade-modo-de-usar/post/2026/09/29/por-que-estamos-ao-mesmo-tempo-ficando-mais-e-menos-saudaveis.ghtml" target="_blank" rel="noopener noreferrer">Ler na fonte &rarr;</a></div></article><article class="item"><img src="/https://s2-g1.glbimg.com/y117MaNd76sBPcr84tt0pSmOjtY=/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2026/d/Q/BUgWnzQ5OrQuigbaCnwQ/2026-08-28t060210z-1074805439-rc2h7napqua6-rtrmadp-3-lunar-eclipse-spain.jpg" alt="" loading="lazy" width="640" height="360" style="width:100%;height:auto;border-radius:10px;margin-bottom:14px"><h2><a href="https://g1.globo.com/ciencia/noticia/2026/09/29/calendario-lua-outubro.ghtml">Calendário lunar de outubro: veja quando a Lua muda de fase e os principais eventos do mês</a></h2><p>Imagem composta de sete fotografias separadas, tiradas com uma única câmera fixa, mostra as fases da lua durante um eclipse lunar parcial sobre a ilha de Gran Canaria. </p><div class="meta"><span>2026-09-29 03:00</span><span class="fonte">G1 Ciencia</span><a href="https://g1.globo.com/ciencia/noticia/2026/09/29/calendario-lua-outubro.ghtml" target="_blank" rel="noopener noreferrer">Ler na fonte &rarr;</a></div></article>
+  </main>
+
+  <footer>
+    <div class="rodape-links">
+      <a href="/">Boletim</a>
+      <a href="/sobre/">Sobre</a>
+      <a href="/como-apuramos/">Como apuramos</a>
+      <a href="/privacidade/">Privacidade</a>
+    </div>
+    <p>Mundo em Questão — 69 notícias de 8 veículos.
+       Atualizado em 2026-10-02 12:43. Todo o conteúdo vem dos veículos citados,
+       com o link para a matéria original. This software is a news aggregator;
+       nao reproduz os textos originais.</p>
+  </footer>
+
+</div>
+</body>
+</html>

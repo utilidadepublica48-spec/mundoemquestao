@@ -75,12 +75,55 @@ POLITICA_NACIONAL = {
 }
 
 FORA_DO_TEMA = {
-    "lotofacil", "lotomania", "quina", "dupla sena", "dia de sorte",
-    "super sete", "mega-sena", "sorteio", "apostas", "bbb",
-    "big brother", "receita de", "bolo de", "torta de", "inss",
-    "meia passagem", "shopping", "vestibular", "bolsa de estudos",
-    "tempo hoje", "previsao do tempo", "campeonato", "libertadores",
-    "brasileirao", "gol de",
+    # ----------------------------------------------
+    # FOFOCA E MUNDO DOS ARTISTAS
+    #
+    # O site e sobre o que acontece no mundo. Fofoca de celebridade,
+    # bastidor de novela e sucesso de rede social nao entram.
+    #
+    # Cuidado com termos genericos como "atriz" ou "cantor": eles aparecem
+    # legitimamente em noticia internacional (um artista que se manifesta
+    # sobre uma guerra, por exemplo). Por isso o filtro exige o assunto
+    # claramente de entretenimento junto, e nao a palavra sozinha.
+    # ----------------------------------------------
+    "fofoca": 1, "fofocando": 1, "fofocaram": 1, "fofocou": 1,
+    "treta": 1, "tretas": 1, "babado": 1,
+    "novo namoro": 1, "namorando": 1, "terminou o namoro": 1,
+    "se separou": 1, "separam": 1, "divorcio": 1,
+    "pedido de casamento": 1,
+    "discutem": 1, "troca de caps": 1, "grito": 1,
+    "bastidores de novela": 1, "bastidores": 1,
+    "elenco de": 1,
+    "novela das 9": 1, "novela das oito": 1, "final da novela": 1,
+    "estreia da novela": 1, "personagem": 1, "protagonista": 1,
+    "viralizou nas redes": 1, "reels": 1, "tiktok": 1,
+    "seguidores": 1, "perfil": 1, "sigam no": 1,
+    "podcast": 1, "podcasters": 1,
+    "fans ": 1, "viraliza": 1, "viralizam": 1, "viralizou": 1,
+    "bbb": 1, "big brother": 1, "a fazenda": 1,
+    "bbf": 1, "power couple": 1,
+
+    "celebridade": 1, "celebridades": 1,
+    "cantor sertanejo": 1, "cantora sertaneja": 1, "sertanejo": 1,
+    "atriz brasileira": 1, "ator brasileiro": 1,
+    "cantora brasileira": 1, "cantor brasileiro": 1,
+    "artista brasileiro": 1, "artista nacional": 1,
+    "apresentadora brasileira": 1, "apresentador brasileiro": 1,
+    "reality show": 1, "de frente para o sol": 1,
+    "power couple": 1, "homenagem a": 1,
+    "anime": 1, "manga": 1, "k-pop": 1, "kpop": 1,
+
+    # ----------------------------------------------
+    # LOTERIA, ESPORTE, TEMPO E COZINHA
+    # ----------------------------------------------
+    "lotofacil": 1, "lotomania": 1, "quina": 1, "dupla sena": 1,
+    "dia de sorte": 1, "super sete": 1, "mega-sena": 1,
+    "sorteio": 1, "apostas": 1, "prêmio da sena": 1,
+    "tempo hoje": 1, "previsao do tempo": 1, "previsao para": 1,
+    "receita de": 1, "bolo de": 1, "torta de": 1, "passo a passo": 1,
+    "inss": 1, "meia passagem": 1, "shopping": 1,
+    "vestibular": 1, "bolsa de estudos": 1, "enem": 1,
+    "brasileirao": 1, "libertadores": 1, "campeonato": 1, "gol de": 1,
 }
 
 INDICIOS_MUNDO = {
@@ -296,11 +339,74 @@ def e_politica_nacional(n):
     return False
 
 
+# Palavras que, sozinhas, nao provam que a noticia e sobre o mundo dos
+# artistas: um famoso pode ser citado numa noticia de guerra ou de politica.
+# Nesses casos a noticia entra normalmente. So e descartada se a materia for
+# APENAS sobre o famoso, sem nenhum assunto internacional.
+# Palavras que, sozinhas, nao provam que a noticia e sobre o mundo dos
+# artistas. Um famoso pode ser citado numa noticia de guerra, e "artista"
+# tambem e o nome de quem pinta a estelares em um texto de ciencia.
+#
+# Por isso: so e fofoca se a materia NAO tiver assunto internacional nem
+# cientifico. Ver a funcao so_mundo_dos_artistas logo abaixo.
+CELEBRIDADE_NEUTRA = {
+    "namorado de": 1, "namorada de": 1, "noivo de": 1, "noiva de": 1,
+    "se declara para": 1, "declarou-se para": 1,
+    "famoso": 1, "famosa": 1, "famosos": 1, "famosas": 1,
+    "celebrity": 1, "cantora": 1, "cantor": 1,
+    "astros": 1,
+}
+
+
+def so_mundo_dos_artistas(n):
+    """
+    Diz se a noticia e SO sobre o mundo dos artistas, sem assunto real.
+
+    Exemplo que entra: "Famosos criticam guerra na Ucrania" -> tem assunto
+    internacional, entao passa.
+    Exemplo que sai: "Cantor sertanejo se separou da esposa" -> e fofoca.
+    """
+    texto = sem_acentos(n["titulo"] + " " + n["resumo"]).lower()
+
+    tem_artista = any(tem_palavra(texto, p) for p in CELEBRIDADE_NEUTRA)
+
+    # Assunto internacional claro? Entao a noticia passa, IMPORTANTE mesmo
+    # que cite gente famosa.
+    # Assunto real (internacional ou cientifico)? Entao a noticia passa,
+    # IMPORTANTE mesmo que cite gente famosa. "Artista" aqui pode ser quem
+    # pinta as estrelas, e nao quem canta.
+    for externo in ("guerra", "conflito", "ataque", "onu", "nato", "g20",
+                    "diplomacia", "gaza", "ucrania", "israel", "palestina",
+                    "iran", "china", "rusia", "eua", "estados unidos",
+                    "economia", "inflacao", "dolar", "petroleo", "tarifa",
+                    "sancoes", "sanções", "eleicao", "presidencia",
+                    "governo", "parlamento", "nasa", "espaco", "descoberta",
+                    "astronomo", "astronomia", "telescopio", "satelite",
+                    "estrela", "galaxia", "planeta", "marte", "lua",
+                    "cientista", "pesquisa", "universo", "cosmologia",
+                    "experimento", "laboratorio", "tecnologia", "inteligencia artificial",
+                    # ciencia e historia sao editorias do site: nunca vao embora
+                    "arqueologia", "arqueologo", "arqueologa", "restos arqueologicos",
+                    "civilizacao", "civilizacao antiga", "pre-historia", "fossil",
+                    "sismologia", "geologia", "ecologia", "biodiversidade",
+                    "genetica", "biociencias", "medicina", "virus", "epidemia",
+                    "orbital", "missao espacial", "observatorio"):
+        if tem_palavra(texto, externo):
+            return False
+
+    return tem_artista
+
+
 def e_mundial(n):
     texto = sem_acentos(n["titulo"] + " " + n["resumo"]).lower()
     for t in FORA_DO_TEMA:
         if tem_palavra(texto, t):
             return False
+
+    # Noticia que e so sobre o mundo dos artistas, sem assunto real
+    if so_mundo_dos_artistas(n):
+        return False
+
     return True
 
 

@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ciencia e tecnologia — Mundo em Questão</title>
+<meta name="description" content="IA, espaco, energia nuclear, novas tecnologias e descobertas.">
+<link rel="canonical" href="https://www.mundoemquestao.com.br/ciencia-e-tecnologia/">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+<meta name="theme-color" content="#0F2347">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Mundo em Questão">
+<meta property="og:title" content="Ciencia e tecnologia — Mundo em Questão">
+<meta property="og:description" content="IA, espaco, energia nuclear, novas tecnologias e descobertas.">
+<meta property="og:url" content="https://www.mundoemquestao.com.br/ciencia-e-tecnologia/">
+<meta property="og:image" content="https://www.mundoemquestao.com.br/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ciencia e tecnologia — Mundo em Questão">
+<meta name="twitter:description" content="IA, espaco, energia nuclear, novas tecnologias e descobertas.">
+<meta name="twitter:image" content="https://www.mundoemquestao.com.br/og.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* O visual e o mesmo da pagina principal: fundo creme, texto azul-marinho
+   e detalhes dourados. As fontes sao as duas mesmas. */
+:root {
+  --bg: #FBF7EF; --ink: #14284A; --ink2: #4A5B78; --line: #E3D9C6;
+  --ouro: #B8891F; --card: #FFFFFF; --sombra: 0 1px 2px rgba(20,40,74,.06);
+  --titulo: 'Bricolage Grotesque', system-ui, -apple-system, sans-serif;
+  --body: 'Source Serif 4', Georgia, serif;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: var(--body); font-size: 1.125rem; line-height: 1.65;
+}
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px 64px; }
+
+header.top {
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  padding: 18px 0; border-bottom: 1px solid var(--line); margin-bottom: 32px;
+}
+.marca {
+  display: flex; align-items: center; gap: 10px; text-decoration: none;
+  color: var(--ink); font-family: var(--titulo); font-weight: 800; font-size: 1.05rem;
+  min-height: 44px;
+}
+.marca-logo { width: 30px; height: 30px; }
+nav { margin-left: auto; }
+nav a {
+  color: var(--ink2); text-decoration: none; font-size: .95rem;
+  padding: 12px 12px; display: inline-block; min-height: 44px; line-height: 20px;
+}
+nav a:hover { color: var(--ouro); }
+nav a:focus-visible, .marca:focus-visible {
+  outline: 2px solid var(--ouro); outline-offset: 2px; border-radius: 4px;
+}
+
+.cabecalho-secao { margin-bottom: 28px; }
+h1 {
+  font-family: var(--titulo); font-weight: 800;
+  font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.05;
+  margin: 0 0 10px; letter-spacing: -.02em;
+}
+.desc-secao { color: var(--ink2); font-size: 1.1rem; max-width: 60ch; margin: 0; }
+.voltar { display: inline-flex; align-items: center; gap: 6px; color: var(--ouro);
+  text-decoration: none; font-size: .95rem; margin-bottom: 18px; min-height: 44px; }
+.voltar:hover { text-decoration: underline; }
+
+.texto { max-width: 68ch; }
+.texto p { font-size: 1.125rem; line-height: 1.7; color: var(--ink); margin: 0 0 18px; }
+.texto h2 {
+  font-family: var(--titulo); font-weight: 700; font-size: 1.4rem;
+  margin: 34px 0 12px; color: var(--ink);
+}
+.texto a { color: var(--ouro); }
+.texto strong { font-weight: 600; }
+
+.vazio {
+  background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+  padding: 32px; text-align: center; color: var(--ink2);
+}
+
+.item {
+  background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+  padding: 22px; margin-bottom: 16px; box-shadow: var(--sombra);
+}
+.item h2 {
+  font-family: var(--titulo); font-weight: 700; font-size: 1.3rem;
+  line-height: 1.25; margin: 0 0 8px; letter-spacing: -.01em;
+}
+.item h2 a { color: var(--ink); text-decoration: none; }
+.item h2 a:hover { color: var(--ouro); }
+.item p { margin: 0 0 12px; color: var(--ink2); max-width: 68ch; }
+.meta {
+  display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center;
+  font-size: .875rem; color: var(--ink2);
+}
+.meta .fonte { color: var(--ouro); font-weight: 600; }
+.meta a { color: var(--ink2); }
+.verificar {
+  display: inline-block; background: #FFF4D6; border: 1px solid #E8C766;
+  color: #7A5A08; font-size: .8125rem; padding: 2px 8px; border-radius: 6px;
+}
+footer {
+  border-top: 1px solid var(--line); margin-top: 40px; padding-top: 22px;
+  font-size: .875rem; color: var(--ink2);
+}
+footer a { color: var(--ink2); }
+.rodape-links { display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 10px; }
+.rodape-links a { min-height: 44px; display: inline-flex; align-items: center; }
+@media (max-width: 640px) {
+  .wrap { padding: 0 16px 48px; }
+  header.top { gap: 10px; }
+  nav { margin-left: 0; width: 100%; order: 3; }
+  .item { padding: 18px; }
+}
+</style>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Ciencia e tecnologia — Mundo em Questão",
+  "description": "IA, espaco, energia nuclear, novas tecnologias e descobertas.",
+  "url": "https://www.mundoemquestao.com.br/ciencia-e-tecnologia/",
+  "inLanguage": "pt-BR",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Mundo em Questão",
+    "url": "https://www.mundoemquestao.com.br"
+  },
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "NewsArticle",
+        "headline": "Crew-13: lançamento da Nasa se torna a viagem mais rápida dos EUA à ISS",
+        "datePublished": "2026-10-02T14:06:00-03:00",
+        "description": "A chegada da missão Crew-13 à ISS demorou cerca de 7 horas e 55 minutos, quebrando a marca de 14 horas estabelecida no ano passado",
+        "mainEntityOfPage": "https://www.metropoles.com/ciencia/crew-13-lancamento-da-nasa-se-torna-a-viagem-mais-rapida-dos-eua-a-iss",
+        "image": [
+          "https://www.mundoemquestao.com.br/fotos/n17.jpg"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "Metropoles Ciencia",
+          "url": "https://www.mundoemquestao.com.br"
+        }
+      },
+      {
+        "@type": "NewsArticle",
+        "headline": "10 Things: Movie Night",
+        "datePublished": "2026-10-02T00:25:00-03:00",
+        "description": "Join Us for Movie Night with NASA NASA’s mission is to pioneer the future in space exploration and scientific discovery. ",
+        "mainEntityOfPage": "https://science.nasa.gov/solar-system/10-things-movie-night/",
+        "image": [
+          "https://www.mundoemquestao.com.br/og.png"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "NASA",
+          "url": "https://www.mundoemquestao.com.br"
+        }
+      },
+      {
+        "@type": "NewsArticle",
+        "headline": "NASA Awards Enterprise Logistics Support Services Agreements",
+        "datePublished": "2026-10-01T20:34:00-03:00",
+        "description": "NASA selected 16 companies to provide Enterprise Logistics Support Services under new agreements that will standardize requirements, improve reporting, and streamline the management of costs and resources. ",
+        "mainEntityOfPage": "https://www.nasa.gov/news-release/nasa-awards-enterprise-logistics-support-services-agreements/",
+        "image": [
+          "https://www.mundoemquestao.com.br/og.png"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "NASA",
+          "url": "https://www.mundoemquestao.com.br"
+        }
+      },
+      {
+        "@type": "NewsArticle",
+        "headline": "Tubarões podem perceber sons de baixa frequência a 74 metros debaixo d’água",
+        "datePublished": "2026-10-01T19:51:00-03:00",
+        "description": "Pesquisa mostra que tubarões-galha-preta conseguem perceber sons de baixa frequência e identificar de onde eles vêm",
+        "mainEntityOfPage": "https://www.metropoles.com/ciencia/tubaroes-podem-perceber-sons-de-baixa-frequencia-a-74-metros-debaixo-dagua",
+        "image": [
+          "https://images.metroimg.com/2026/10/tubaroes-ouvem-75m-metropoles.jpg"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "Metropoles Ciencia",
+          "url": "https://www.mundoemquestao.com.br"
+        }
+      },
+      {
+        "@type": "NewsArticle",
+        "headline": "Degelo do permafrost faz metais nos rios atingirem até 70 vezes o normal",
+        "datePublished": "2026-10-01T19:39:00-03:00",
+        "description": "Pesquisa relaciona o degelo do solo à liberação de metais em rios do Alasca. ",
+        "mainEntityOfPage": "https://www.metropoles.com/ciencia/degelo-do-permafrost-faz-metais-nos-rios-atingirem-ate-70-vezes-o-normal",
+        "image": [
+          "https://images.metroimg.com/2026/10/permafrost-degelo.jpg"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "Metropoles Ciencia",
+          "url": "https://www.mundoemquestao.com.br"
+        }
+      },
+      {
+        "@type": "NewsArticle",
+        "headline": "NASA’s SpaceX Crew-13 Launches",
+        "datePublished": "2026-10-01T18:05:00-03:00",
+        "description": "In this Oct. 1, 2026, photo, a SpaceX Falcon 9 rocket and Dragon spacecraft launch from Space Launch Complex 40 at Cape Canaveral Space Force Station in Florida. The spacecraft is carrying NASA astronauts Jessica Watkins and Luke Delaney, CSA (Canadian Space Agency) astronaut Jos",
+        "mainEntityOfPage": "https://www.nasa.gov/image-article/nasas-spacex-crew-13-launches/",
+        "image": [
+          "https://www.mundoemquestao.com.br/og.png"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "NASA",
+          "url": "https://www.mundoemquestao.com.br"
+        }
+      },
+      {
+        "@type": "NewsArticle",
+        "headline": "What’s Up: October 2026 Skywatching Tips from NASA",
+        "datePublished": "2026-10-01T16:58:00-03:00",
+        "description": "A Meteor Shower and the Moon Near the Pleiades See Saturn at opposition, catch the Orionid meteor shower, and watch the Moon pass close to the Pleiades, also known as the Seven Sisters. ",
+        "mainEntityOfPage": "https://science.nasa.gov/solar-system/skywatching/whats-up-october-2026-skywatching-tips-from-nasa/",
+        "image": [
+          "https://www.mundoemquestao.com.br/og.png"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "NASA",
+          "url": "https://www.mundoemquestao.com.br"
+        }
+      },
+      {
+        "@type": "NewsArticle",
+        "headline": "Nasa lança missão Crew-13 com quatro astronautas rumo à Estação Espacial Internacional",
+        "datePublished": "2026-10-01T15:11:00-03:00",
+        "description": "Tripulação da Crew-13. Da esquerda para a direita, astronauta da Agência Espacial Canadense Joshua Kutryk, os astronautas da Nasa, Luke Delaney e Jessica Watkins, e o cosmonauta russo, Sergey Teteryatnikov. REUTERS/Philip Scott Andrews A Nasa e a SpaceX lançaram nesta quinta-feir",
+        "mainEntityOfPage": "https://g1.globo.com/ciencia/noticia/2026/10/01/nasa-lanca-missao-crew-13-com-quatro-astronautas-rumo-a-estacao-espacial-internacional.ghtml",
+        "image": [
+          "https://s2-g1.glbimg.com/79LhbCxS5Bhq3kkvvnRKUL88lO0=/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2026/Y/l/2R3Nn3RXK5xm8SPElWjA/2026-10-01t125215z-132568296-rc2buna6sl2i-rtrmadp-3-space-exploration-crew-13.jpg"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "G1 Ciencia",
+          "url": "https://www.mundoemquestao.com.br"
+        }
+      },
+      {
+        "@type": "NewsArticle",
+        "headline": "IA que deveria facilitar comunicação ainda cria barreiras para pessoas surdas, aponta estudo da UFLA",
+        "datePublished": "2026-10-01T07:01:00-03:00",
+        "description": "IA que deveria facilitar comunicação ainda cria barreiras para pessoas surdas Quando precisa resolver um problema pela internet, o professor de Libras da Universidade Federal de Lavras (UFLA) Thales Douglas já recorreu à inteligência artificial em busca de ajuda. ",
+        "mainEntityOfPage": "https://g1.globo.com/mg/sul-de-minas/noticia/2026/10/01/ia-que-deveria-facilitar-comunicacao-ainda-cria-barreiras-para-pessoas-surdas-aponta-estudo-da-ufla.ghtml",
+        "image": [
+          "https://s2-g1.glbimg.com/oF_s-W4V7bGxFzh2U0ye5vobOPI=/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2026/4/r/Q13Lc3R4eU8IAoF8K5rA/ia-chatboots.jpg"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "G1 Ciencia",
+          "url": "https://www.mundoemquestao.com.br"
+        }
+      },
+      {
+        "@type": "NewsArticle",
+        "headline": "Sinal misterioso no espaço pode revelar o que acontece quando estrelas mortas colidem; entenda",
+        "datePublished": "2026-09-30T17:34:00-03:00",
+        "description": "Representação artística mostra duas estrelas de nêutrons no momento da colisão, evento que pode produzir ondas gravitacionais e uma explosão de raios gama. ",
+        "mainEntityOfPage": "https://g1.globo.com/ciencia/noticia/2026/09/30/sinal-misterioso-no-espaco-estrelas-entenda.ghtml",
+        "image": [
+          "https://s2-g1.glbimg.com/FmDwOI7ZdMMOSnjASl3oerSGA5c=/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2026/4/3/KfDpR3TheDRtLP2K7ENg/eso1733s-artists-impression-of-merging-neutron-stars.jpg"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "G1 Ciencia",
+          "url": "https://www.mundoemquestao.com.br"
+        }
+      },
+      {
+        "@type": "NewsArticle",
+        "headline": "Cientistas encontram gene humano em vírus de molusco contagioso que infecta a pele; ‘roubo’ ocorreu há 100 mil anos",
+        "datePublished": "2026-09-30T15:16:00-03:00",
+        "description": "Cientistas encontram gene humano em vírus de molusco contagioso que infecta a pele; ‘roubo’ ocorreu há 100 mil anos Adobe Stock Um vírus que infecta exclusivamente humanos e provoca pequenas lesões na pele carrega em seu próprio material genético um gene adquirido de nossos ances",
+        "mainEntityOfPage": "https://g1.globo.com/ciencia/noticia/2026/09/30/cientistas-encontram-gene-humano-em-virus-de-molusco-contagioso-que-infecta-a-pele-roubo-ocorreu-ha-100-mil-anos.ghtml",
+        "image": [
+          "https://s2-g1.glbimg.com/-o0KrncPpJvoIK5W84gDutR6FnE=/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2026/2/S/39dzGUQQ2h5pO9m0ApEg/adobestock-141880562.jpeg"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "G1 Ciencia",
+          "url": "https://www.mundoemquestao.com.br"
+        }
+      }
+    ]
+  }
+}</script>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <a href="/" class="marca">
+      <img class="marca-logo" src="/logo.png" width="30" height="30" alt="">
+      <span>Mundo em Questão</span>
+    </a>
+    <nav aria-label="Principal">
+      <a href="/">Boletim</a>
+      <a href="/#secoes">Seções</a>
+      <a href="/sobre/">Sobre</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="cabecalho-secao">
+      <a href="/" class="voltar">&larr; Voltar ao boletim</a>
+      <h1>Ciencia e tecnologia</h1>
+      <p class="desc-secao">IA, espaco, energia nuclear, novas tecnologias e descobertas.</p>
+    </div>
+
+    <article class="item"><img src="/fotos/n17.jpg" alt="" loading="lazy" width="640" height="360" style="width:100%;height:auto;border-radius:10px;margin-bottom:14px"><h2><a href="https://www.metropoles.com/ciencia/crew-13-lancamento-da-nasa-se-torna-a-viagem-mais-rapida-dos-eua-a-iss">Crew-13: lançamento da Nasa se torna a viagem mais rápida dos EUA à ISS</a></h2><p>A chegada da missão Crew-13 à ISS demorou cerca de 7 horas e 55 minutos, quebrando a marca de 14 horas estabelecida no ano passado</p><div class="meta"><span>2026-10-02 14:06</span><span class="fonte">Metropoles Ciencia</span><a href="https://www.metropoles.com/ciencia/crew-13-lancamento-da-nasa-se-torna-a-viagem-mais-rapida-dos-eua-a-iss" target="_blank" rel="noopener noreferrer">Ler na fonte &rarr;</a></div></article><article class="item"><h2><a href="https://science.nasa.gov/solar-system/10-things-movie-night/">10 Things: Movie Night</a></h2><p>Join Us for Movie Night with NASA NASA’s mission is to pioneer the future in space exploration and scientific discovery. </p><div class="meta"><span>2026-10-02 00:25</span><span class="fonte">NASA</span><a href="https://science.nasa.gov/solar-system/10-things-movie-night/" target="_blank" rel="noopener noreferrer">Ler na fonte &rarr;</a></div></article><article class="item"><h2><a href="https://www.nasa.gov/news-release/nasa-awards-enterprise-logistics-support-services-agreements/">NASA Awards Enterprise Logistics Support Services Agreements</a></h2><p>NASA selected 16 companies to provide Enterprise Logistics Support Services under new agreements that will standardize requirements, improve reporting, and streamline the management of costs and resources. </p><div class="meta"><span>2026-10-01 20:34</span><span class="fonte">NASA</span><a href="https://www.nasa.gov/news-release/nasa-awards-enterprise-logistics-support-services-agreements/" target="_blank" rel="noopener noreferrer">Ler na fonte &rarr;</a></div></article><article class="item"><img src="/https://images.metroimg.com/2026/10/tubaroes-ouvem-75m-metropoles.jpg" alt="" loading="lazy" width="640" height="360" style="width:100%;height:auto;border-radius:10px;margin-bottom:14px"><h2><a href="https://www.metropoles.com/ciencia/tubaroes-podem-perceber-sons-de-baixa-frequencia-a-74-metros-debaixo-dagua">Tubarões podem perceber sons de baixa frequência a 74 metros debaixo d’água</a></h2><p>Pesquisa mostra que tubarões-galha-preta conseguem perceber sons de baixa frequência e identificar de onde eles vêm</p><div class="meta"><span>2026-10-01 19:51</span><span class="fonte">Metropoles Ciencia</span><a href="https://www.metropoles.com/ciencia/tubaroes-podem-perceber-sons-de-baixa-frequencia-a-74-metros-debaixo-dagua" target="_blank" rel="noopener noreferrer">Ler na fonte &rarr;</a></div></article><article class="item"><img src="/https://images.metroimg.com/2026/10/permafrost-degelo.jpg" alt="" loading="lazy" width="640" height="360" style="width:100%;height:auto;border-radius:10px;margin-bottom:14px"><h2><a href="https://www.metropoles.com/ciencia/degelo-do-permafrost-faz-metais-nos-rios-atingirem-ate-70-vezes-o-normal">Degelo do permafrost faz metais nos rios atingirem até 70 vezes o normal</a></h2><p>Pesquisa relaciona o degelo do solo à liberação de metais em rios do Alasca. </p><div class="meta"><span>2026-10-01 19:39</span><span class="fonte">Metropoles Ciencia</span><a href="https://www.metropoles.com/ciencia/degelo-do-permafrost-faz-metais-nos-rios-atingirem-ate-70-vezes-o-normal" target="_blank" rel="noopener noreferrer">Ler na fonte &rarr;</a></div></article><article class="item"><h2><a href="https://www.nasa.gov/image-article/nasas-spacex-crew-13-launches/">NASA’s SpaceX Crew-13 Launches</a></h2><p>In this Oct. 1, 2026, photo, a SpaceX Falcon 9 rocket and Dragon spacecraft launch from Space Launch Complex 40 at Cape Canaveral Space Force Station in Florida. The spacecraft is carrying NASA astronauts Jessica Watkins and Luke Delaney, CSA (Canadian Space Agency) astronaut Joshua Kutryk, and Roscosmos cosmonaut...</p><div class="meta"><span>2026-10-01 18:05</span><span class="fonte">NASA</span><a href="https://www.nasa.gov/image-article/nasas-spacex-crew-13-launches/" target="_blank" rel="noopener noreferrer">Ler na fonte &rarr;</a><span>Também em: NASA</span></div></article><article class="item"><h2><a href="https://science.nasa.gov/solar-system/skywatching/whats-up-october-2026-skywatching-tips-from-nasa/">What’s Up: October 2026 Skywatching Tips from NASA</a></h2><p>A Meteor Shower and the Moon Near the Pleiades See Saturn at opposition, catch the Orionid meteor shower, and watch the Moon pass close to the Pleiades, also known as the Seven Sisters. </p><div class="meta"><span>2026-10-01 16:58</span><span class="fonte">NASA</span><a href="https://science.nasa.gov/solar-system/skywatching/whats-up-october-2026-skywatching-tips-from-nasa/" target="_blank" rel="noopener noreferrer">Ler na fonte &rarr;</a></div></article><article class="item"><img src="/https://s2-g1.glbimg.com/79LhbCxS5Bhq3kkvvnRKUL88lO0=/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2026/Y/l/2R3Nn3RXK5xm8SPElWjA/2026-10-01t125215z-132568296-rc2buna6sl2i-rtrmadp-3-space-exploration-crew-13.jpg" alt="" loading="lazy" width="640" height="360" style="width:100%;height:auto;border-radius:10px;margin-bottom:14px"><h2><a href="https://g1.globo.com/ciencia/noticia/2026/10/01/nasa-lanca-missao-crew-13-com-quatro-astronautas-rumo-a-estacao-espacial-internacional.ghtml">Nasa lança missão Crew-13 com quatro astronautas rumo à Estação Espacial Internacional</a></h2><p>Tripulação da Crew-13. Da esquerda para a direita, astronauta da Agência Espacial Canadense Joshua Kutryk, os astronautas da Nasa, Luke Delaney e Jessica Watkins, e o cosmonauta russo, Sergey Teteryatnikov. REUTERS/Philip Scott Andrews A Nasa e a SpaceX lançaram nesta quinta-feira (1) a missão Crew-13, que vai levar...</p><div class="meta"><span>2026-10-01 15:11</span><span class="fonte">G1 Ciencia</span><a href="https://g1.globo.com/ciencia/noticia/2026/10/01/nasa-lanca-missao-crew-13-com-quatro-astronautas-rumo-a-estacao-espacial-internacional.ghtml" target="_blank" rel="noopener noreferrer">Ler na fonte &rarr;</a></div></article><article class="item"><img src="/https://s2-g1.glbimg.com/oF_s-W4V7bGxFzh2U0ye5vobOPI=/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2026/4/r/Q13Lc3R4eU8IAoF8K5rA/ia-chatboots.jpg" alt="" loading="lazy" width="640" height="360" style="width:100%;height:auto;border-radius:10px;margin-bottom:14px"><h2><a href="https://g1.globo.com/mg/sul-de-minas/noticia/2026/10/01/ia-que-deveria-facilitar-comunicacao-ainda-cria-barreiras-para-pessoas-surdas-aponta-estudo-da-ufla.ghtml">IA que deveria facilitar comunicação ainda cria barreiras para pessoas surdas, aponta estudo da UFLA</a></h2><p>IA que deveria facilitar comunicação ainda cria barreiras para pessoas surdas Quando precisa resolver um problema pela internet, o professor de Libras da Universidade Federal de Lavras (UFLA) Thales Douglas já recorreu à inteligência artificial em busca de ajuda. </p><div class="meta"><span>2026-10-01 07:01</span><span class="fonte">G1 Ciencia</span><a href="https://g1.globo.com/mg/sul-de-minas/noticia/2026/10/01/ia-que-deveria-facilitar-comunicacao-ainda-cria-barreiras-para-pessoas-surdas-aponta-estudo-da-ufla.ghtml" target="_blank" rel="noopener noreferrer">Ler na fonte &rarr;</a></div></article><article class="item"><img src="/https://s2-g1.glbimg.com/FmDwOI7ZdMMOSnjASl3oerSGA5c=/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2026/4/3/KfDpR3TheDRtLP2K7ENg/eso1733s-artists-impression-of-merging-neutron-stars.jpg" alt="" loading="lazy" width="640" height="360" style="width:100%;height:auto;border-radius:10px;margin-bottom:14px"><h2><a href="https://g1.globo.com/ciencia/noticia/2026/09/30/sinal-misterioso-no-espaco-estrelas-entenda.ghtml">Sinal misterioso no espaço pode revelar o que acontece quando estrelas mortas colidem; entenda</a></h2><p>Representação artística mostra duas estrelas de nêutrons no momento da colisão, evento que pode produzir ondas gravitacionais e uma explosão de raios gama. </p><div class="meta"><span>2026-09-30 17:34</span><span class="fonte">G1 Ciencia</span><a href="https://g1.globo.com/ciencia/noticia/2026/09/30/sinal-misterioso-no-espaco-estrelas-entenda.ghtml" target="_blank" rel="noopener noreferrer">Ler na fonte &rarr;</a></div></article><article class="item"><img src="/https://s2-g1.glbimg.com/-o0KrncPpJvoIK5W84gDutR6FnE=/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2026/2/S/39dzGUQQ2h5pO9m0ApEg/adobestock-141880562.jpeg" alt="" loading="lazy" width="640" height="360" style="width:100%;height:auto;border-radius:10px;margin-bottom:14px"><h2><a href="https://g1.globo.com/ciencia/noticia/2026/09/30/cientistas-encontram-gene-humano-em-virus-de-molusco-contagioso-que-infecta-a-pele-roubo-ocorreu-ha-100-mil-anos.ghtml">Cientistas encontram gene humano em vírus de molusco contagioso que infecta a pele; ‘roubo’ ocorreu há 100 mil anos</a></h2><p>Cientistas encontram gene humano em vírus de molusco contagioso que infecta a pele; ‘roubo’ ocorreu há 100 mil anos Adobe Stock Um vírus que infecta exclusivamente humanos e provoca pequenas lesões na pele carrega em seu próprio material genético um gene adquirido de nossos ancestrais há cerca de 100 mil anos. </p><div class="meta"><span>2026-09-30 15:16</span><span class="fonte">G1 Ciencia</span><a href="https://g1.globo.com/ciencia/noticia/2026/09/30/cientistas-encontram-gene-humano-em-virus-de-molusco-contagioso-que-infecta-a-pele-roubo-ocorreu-ha-100-mil-anos.ghtml" target="_blank" rel="noopener noreferrer">Ler na fonte &rarr;</a></div></article>
+  </main>
+
+  <footer>
+    <div class="rodape-links">
+      <a href="/">Boletim</a>
+      <a href="/sobre/">Sobre</a>
+      <a href="/como-apuramos/">Como apuramos</a>
+      <a href="/privacidade/">Privacidade</a>
+    </div>
+    <p>Mundo em Questão — 69 notícias de 8 veículos.
+       Atualizado em 2026-10-02 12:43. Todo o conteúdo vem dos veículos citados,
+       com o link para a matéria original. This software is a news aggregator;
+       nao reproduz os textos originais.</p>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Guerras e conflitos — Mundo em Questão</title>
+<meta name="description" content="Confrontos armados, territorio, forcas envolvidas e consequencias humanas.">
+<link rel="canonical" href="https://www.mundoemquestao.com.br/guerras-e-conflitos/">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon.png">
+<meta name="theme-color" content="#0F2347">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content="Mundo em Questão">
+<meta property="og:title" content="Guerras e conflitos — Mundo em Questão">
+<meta property="og:description" content="Confrontos armados, territorio, forcas envolvidas e consequencias humanas.">
+<meta property="og:url" content="https://www.mundoemquestao.com.br/guerras-e-conflitos/">
+<meta property="og:image" content="https://www.mundoemquestao.com.br/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Guerras e conflitos — Mundo em Questão">
+<meta name="twitter:description" content="Confrontos armados, territorio, forcas envolvidas e consequencias humanas.">
+<meta name="twitter:image" content="https://www.mundoemquestao.com.br/og.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+<style>
+/* O visual e o mesmo da pagina principal: fundo creme, texto azul-marinho
+   e detalhes dourados. As fontes sao as duas mesmas. */
+:root {
+  --bg: #FBF7EF; --ink: #14284A; --ink2: #4A5B78; --line: #E3D9C6;
+  --ouro: #B8891F; --card: #FFFFFF; --sombra: 0 1px 2px rgba(20,40,74,.06);
+  --titulo: 'Bricolage Grotesque', system-ui, -apple-system, sans-serif;
+  --body: 'Source Serif 4', Georgia, serif;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0; background: var(--bg); color: var(--ink);
+  font-family: var(--body); font-size: 1.125rem; line-height: 1.65;
+}
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 20px 64px; }
+
+header.top {
+  display: flex; align-items: center; gap: 16px; flex-wrap: wrap;
+  padding: 18px 0; border-bottom: 1px solid var(--line); margin-bottom: 32px;
+}
+.marca {
+  display: flex; align-items: center; gap: 10px; text-decoration: none;
+  color: var(--ink); font-family: var(--titulo); font-weight: 800; font-size: 1.05rem;
+  min-height: 44px;
+}
+.marca-logo { width: 30px; height: 30px; }
+nav { margin-left: auto; }
+nav a {
+  color: var(--ink2); text-decoration: none; font-size: .95rem;
+  padding: 12px 12px; display: inline-block; min-height: 44px; line-height: 20px;
+}
+nav a:hover { color: var(--ouro); }
+nav a:focus-visible, .marca:focus-visible {
+  outline: 2px solid var(--ouro); outline-offset: 2px; border-radius: 4px;
+}
+
+.cabecalho-secao { margin-bottom: 28px; }
+h1 {
+  font-family: var(--titulo); font-weight: 800;
+  font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.05;
+  margin: 0 0 10px; letter-spacing: -.02em;
+}
+.desc-secao { color: var(--ink2); font-size: 1.1rem; max-width: 60ch; margin: 0; }
+.voltar { display: inline-flex; align-items: center; gap: 6px; color: var(--ouro);
+  text-decoration: none; font-size: .95rem; margin-bottom: 18px; min-height: 44px; }
+.voltar:hover { text-decoration: underline; }
+
+.texto { max-width: 68ch; }
+.texto p { font-size: 1.125rem; line-height: 1.7; color: var(--ink); margin: 0 0 18px; }
+.texto h2 {
+  font-family: var(--titulo); font-weight: 700; font-size: 1.4rem;
+  margin: 34px 0 12px; color: var(--ink);
+}
+.texto a { color: var(--ouro); }
+.texto strong { font-weight: 600; }
+
+.vazio {
+  background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+  padding: 32px; text-align: center; color: var(--ink2);
+}
+
+.item {
+  background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+  padding: 22px; margin-bottom: 16px; box-shadow: var(--sombra);
+}
+.item h2 {
+  font-family: var(--titulo); font-weight: 700; font-size: 1.3rem;
+  line-height: 1.25; margin: 0 0 8px; letter-spacing: -.01em;
+}
+.item h2 a { color: var(--ink); text-decoration: none; }
+.item h2 a:hover { color: var(--ouro); }
+.item p { margin: 0 0 12px; color: var(--ink2); max-width: 68ch; }
+.meta {
+  display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center;
+  font-size: .875rem; color: var(--ink2);
+}
+.meta .fonte { color: var(--ouro); font-weight: 600; }
+.meta a { color: var(--ink2); }
+.verificar {
+  display: inline-block; background: #FFF4D6; border: 1px solid #E8C766;
+  color: #7A5A08; font-size: .8125rem; padding: 2px 8px; border-radius: 6px;
+}
+footer {
+  border-top: 1px solid var(--line); margin-top: 40px; padding-top: 22px;
+  font-size: .875rem; color: var(--ink2);
+}
+footer a { color: var(--ink2); }
+.rodape-links { display: flex; gap: 18px; flex-wrap: wrap; margin-bottom: 10px; }
+.rodape-links a { min-height: 44px; display: inline-flex; align-items: center; }
+@media (max-width: 640px) {
+  .wrap { padding: 0 16px 48px; }
+  header.top { gap: 10px; }
+  nav { margin-left: 0; width: 100%; order: 3; }
+  .item { padding: 18px; }
+}
+</style>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Guerras e conflitos — Mundo em Questão",
+  "description": "Confrontos armados, territorio, forcas envolvidas e consequencias humanas.",
+  "url": "https://www.mundoemquestao.com.br/guerras-e-conflitos/",
+  "inLanguage": "pt-BR",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Mundo em Questão",
+    "url": "https://www.mundoemquestao.com.br"
+  },
+  "mainEntity": {
+    "@type": "ItemList",
+    "itemListElement": [
+      {
+        "@type": "NewsArticle",
+        "headline": "Autoridades de Israel vão interrogar copiloto que tentou derrubar voo da FlyDubai, diz agência",
+        "datePublished": "2026-10-02T14:27:00-03:00",
+        "description": "Emirados Árabes e Israel investigam copiloto que tentou derrubar avião Autoridades de Israel vão participar do interrogatório do copiloto acusado de tentar derrubar o voo FZ1073 da Flydubai, que ia de Dubai a Tel Aviv, na quarta-feira (30), segundo a agência de notícias Reuters. ",
+        "mainEntityOfPage": "https://g1.globo.com/mundo/noticia/2026/10/02/autoridades-de-israel-vao-interrogar-copiloto-que-tentou-derrubar-voo-da-flydubai-diz-agencia.ghtml",
+        "image": [
+          "https://www.mundoemquestao.com.br/fotos/n16.jpg"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "G1 Mundo",
+          "url": "https://www.mundoemquestao.com.br"
+        }
+      },
+      {
+        "@type": "NewsArticle",
+        "headline": "Emirados Árabes dizem que caso em avião da Flydubai foi ato terrorista; Trump ameaça Irã",
+        "datePublished": "2026-10-02T13:03:00-03:00",
+        "description": "O conselheiro presidencial dos Emirados Árabes Unidos, Anwar Gargash, afirmou nesta sexta-feira (2) que o incidente a bordo de um voo da Flydubai , que seguia de Dubai para Tel Aviv ( Israel ), foi um ato terrorista. ",
+        "mainEntityOfPage": "https://redir.folha.com.br/redir/online/mundo/rss091/*https://www1.folha.uol.com.br/mundo/2026/10/emirados-arabes-dizem-que-caso-em-aviao-da-flydubai-foi-ato-terrorista-trump-ameaca-ira.shtml",
+        "image": [
+          "https://f.i.uol.com.br/fotografia/2026/10/02/17909416916abf99fb81090_1790941691_3x2_rt.jpg"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "Folha de S.Paulo - Mundo",
+          "url": "https://www.mundoemquestao.com.br"
+        }
+      },
+      {
+        "@type": "NewsArticle",
+        "headline": "Rússia aumenta pressão sobre Kiev com ataque a pontes",
+        "datePublished": "2026-10-02T12:33:00-03:00",
+        "description": "A Rússia adotou uma nova tática em sua guerra contra a Ucrânia , e pela primeira vez no conflito iniciado em 2022 atacou diretamente pontes vitais da capital Kiev . ",
+        "mainEntityOfPage": "https://redir.folha.com.br/redir/online/mundo/rss091/*https://www1.folha.uol.com.br/mundo/2026/10/russia-aumenta-pressao-sobre-kiev-com-ataque-a-pontes.shtml",
+        "image": [
+          "https://f.i.uol.com.br/fotografia/2026/10/02/17909442226abfa3de7b686_1790944222_3x2_rt.jpg"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "Folha de S.Paulo - Mundo",
+          "url": "https://www.mundoemquestao.com.br"
+        }
+      },
+      {
+        "@type": "NewsArticle",
+        "headline": "Em meio a tensões com a China, Taiwan recebe primeiros caças de combate F-16V fabricados nos EUA",
+        "datePublished": "2026-10-02T10:05:00-03:00",
+        "description": "Taiwan recebe primeiros caças de combate F-16V fabricados nos EUA Taiwan recebeu nesta sexta-feira (2) os dois primeiros caças de combate F-16V, fabricados nos Estados Unidos, no momento em que a ilha asiática moderniza suas capacidades militares para dissuadir um possível ataque",
+        "mainEntityOfPage": "https://g1.globo.com/mundo/noticia/2026/10/02/taiwan-recebe-primeiros-cacas-f-16v-fabricados-eua.ghtml",
+        "image": [
+          "https://s2-g1.glbimg.com/0bLM5iCRHi0BCL7OsUFyBAnqgZk=/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2026/H/r/z0fPUSRxqCM3Tm54M4sQ/htmkeq3aeaarkt6.jpg"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "G1 Mundo",
+          "url": "https://www.mundoemquestao.com.br"
+        }
+      },
+      {
+        "@type": "NewsArticle",
+        "headline": "&#x27;Não podia deixar ninguém morrer&#x27;, diz piloto esfaqueado em voo da FlyDubai; veja VÍDEO",
+        "datePublished": "2026-10-02T08:52:00-03:00",
+        "description": "&#x27;Não podia deixar ninguém morrer&#x27;, diz piloto esfaqueado em voo da FlyDubai O piloto do voo FZ1073 da FlyDubai descreveu nesta sexta-feira (2) como lutou pela própria vida e que &quot;não podia deixar ninguém morrer&quot; após ter sido esfaqueado por seu copiloto, que tentou derrubar o avi",
+        "mainEntityOfPage": "https://g1.globo.com/mundo/noticia/2026/10/02/se-eu-nao-levantasse-passageiros-morreriam-depoimento-piloto-esfaqueado-voo-flydubai.ghtml",
+        "image": [
+          "https://s2-g1.glbimg.com/E-6_Y3-xlPl2fUV_ECB5hD1vpT0=/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2026/9/Q/KXmHufQHKYgskTxMSIVQ/captura-de-tela-2026-10-02-080137.png"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "G1 Mundo",
+          "url": "https://www.mundoemquestao.com.br"
+        }
+      },
+      {
+        "@type": "NewsArticle",
+        "headline": "Mulher tem perna errada amputada durante cirurgia e processa hospital nos EUA",
+        "datePublished": "2026-10-02T06:00:00-03:00",
+        "description": "Marietta, Ohio. AP Uma mulher de 74 anos está processando um hospital em Ohio, nos Estados Unidos, depois de ter a perna errada amputada durante uma cirurgia. Sharon Jacks deveria ter o membro direito retirado abaixo do joelho, mas os médicos amputaram a perna esquerda, segundo a",
+        "mainEntityOfPage": "https://g1.globo.com/mundo/noticia/2026/10/02/mulher-tem-perna-errada-amputada-durante-cirurgia-e-processa-hospital-nos-eua.ghtml",
+        "image": [
+          "https://www.mundoemquestao.com.br/og.png"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "G1 Mundo",
+          "url": "https://www.mundoemquestao.com.br"
+        }
+      },
+      {
+        "@type": "NewsArticle",
+        "headline": "Morre Lito Sousa, o youtuber que fez milhões se apaixonarem por aviação",
+        "datePublished": "2026-10-01T22:44:00-03:00",
+        "description": "Mecânico e piloto de aviões, Lito Sousa comoveu milhões de pessoas ao revelar que enfrentava a doença de Creutzfeldt-Jakob (DCJ).",
+        "mainEntityOfPage": "https://www.bbc.com/portuguese/articles/cqz0z0epzdrxo?at_medium=RSS&amp;at_campaign=rss",
+        "image": [
+          "https://ichef.bbci.co.uk/ace/ws/1536/cpsprodpb/63c0/live/298d88c0-a008-11f1-a291-b542ee92de7c.png"
+        ],
+        "publisher": {
+          "@type": "Organization",
+          "name": "BBC News Brasil",
+          "url": "https://www.mundoemquestao.com.br"
+        }
+      }
+    ]
+  }
+}</script>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="top">
+    <a href="/" class="marca">
+      <img class="marca-logo" src="/logo.png" width="30" height="30" alt="">
+      <span>Mundo em Questão</span>
+    </a>
+    <nav aria-label="Principal">
+      <a href="/">Boletim</a>
+      <a href="/#secoes">Seções</a>
+      <a href="/sobre/">Sobre</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="cabecalho-secao">
+      <a href="/" class="voltar">&larr; Voltar ao boletim</a>
+      <h1>Guerras e conflitos</h1>
+      <p class="desc-secao">Confrontos armados, territorio, forcas envolvidas e consequencias humanas.</p>
+    </div>
+
+    <article class="item"><img src="/fotos/n16.jpg" alt="" loading="lazy" width="640" height="360" style="width:100%;height:auto;border-radius:10px;margin-bottom:14px"><h2><a href="https://g1.globo.com/mundo/noticia/2026/10/02/autoridades-de-israel-vao-interrogar-copiloto-que-tentou-derrubar-voo-da-flydubai-diz-agencia.ghtml">Autoridades de Israel vão interrogar copiloto que tentou derrubar voo da FlyDubai, diz agência</a></h2><p>Emirados Árabes e Israel investigam copiloto que tentou derrubar avião Autoridades de Israel vão participar do interrogatório do copiloto acusado de tentar derrubar o voo FZ1073 da Flydubai, que ia de Dubai a Tel Aviv, na quarta-feira (30), segundo a agência de notícias Reuters. </p><div class="meta"><span>2026-10-02 14:27</span><span class="fonte">G1 Mundo</span><a href="https://g1.globo.com/mundo/noticia/2026/10/02/autoridades-de-israel-vao-interrogar-copiloto-que-tentou-derrubar-voo-da-flydubai-diz-agencia.ghtml" target="_blank" rel="noopener noreferrer">Ler na fonte &rarr;</a></div></article><article class="item"><img src="/https://f.i.uol.com.br/fotografia/2026/10/02/17909416916abf99fb81090_1790941691_3x2_rt.jpg" alt="" loading="lazy" width="640" height="360" style="width:100%;height:auto;border-radius:10px;margin-bottom:14px"><h2><a href="https://redir.folha.com.br/redir/online/mundo/rss091/*https://www1.folha.uol.com.br/mundo/2026/10/emirados-arabes-dizem-que-caso-em-aviao-da-flydubai-foi-ato-terrorista-trump-ameaca-ira.shtml">Emirados Árabes dizem que caso em avião da Flydubai foi ato terrorista; Trump ameaça Irã</a></h2><p>O conselheiro presidencial dos Emirados Árabes Unidos, Anwar Gargash, afirmou nesta sexta-feira (2) que o incidente a bordo de um voo da Flydubai , que seguia de Dubai para Tel Aviv ( Israel ), foi um ato terrorista. </p><div class="meta"><span>2026-10-02 13:03</span><span class="fonte">Folha de S.Paulo - Mundo</span><a href="https://redir.folha.com.br/redir/online/mundo/rss091/*https://www1.folha.uol.com.br/mundo/2026/10/emirados-arabes-dizem-que-caso-em-aviao-da-flydubai-foi-ato-terrorista-trump-ameaca-ira.shtml" target="_blank" rel="noopener noreferrer">Ler na fonte &rarr;</a></div></article><article class="item"><img src="/https://f.i.uol.com.br/fotografia/2026/10/02/17909442226abfa3de7b686_1790944222_3x2_rt.jpg" alt="" loading="lazy" width="640" height="360" style="width:100%;height:auto;border-radius:10px;margin-bottom:14px"><h2><a href="https://redir.folha.com.br/redir/online/mundo/rss091/*https://www1.folha.uol.com.br/mundo/2026/10/russia-aumenta-pressao-sobre-kiev-com-ataque-a-pontes.shtml">Rússia aumenta pressão sobre Kiev com ataque a pontes</a></h2><p>A Rússia adotou uma nova tática em sua guerra contra a Ucrânia , e pela primeira vez no conflito iniciado em 2022 atacou diretamente pontes vitais da capital Kiev . </p><div class="meta"><span>2026-10-02 12:33</span><span class="fonte">Folha de S.Paulo - Mundo</span><a href="https://redir.folha.com.br/redir/online/mundo/rss091/*https://www1.folha.uol.com.br/mundo/2026/10/russia-aumenta-pressao-sobre-kiev-com-ataque-a-pontes.shtml" target="_blank" rel="noopener noreferrer">Ler na fonte &rarr;</a></div></article><article class="item"><img src="/https://s2-g1.glbimg.com/0bLM5iCRHi0BCL7OsUFyBAnqgZk=/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2026/H/r/z0fPUSRxqCM3Tm54M4sQ/htmkeq3aeaarkt6.jpg" alt="" loading="lazy" width="640" height="360" style="width:100%;height:auto;border-radius:10px;margin-bottom:14px"><h2><a href="https://g1.globo.com/mundo/noticia/2026/10/02/taiwan-recebe-primeiros-cacas-f-16v-fabricados-eua.ghtml">Em meio a tensões com a China, Taiwan recebe primeiros caças de combate F-16V fabricados nos EUA</a></h2><p>Taiwan recebe primeiros caças de combate F-16V fabricados nos EUA Taiwan recebeu nesta sexta-feira (2) os dois primeiros caças de combate F-16V, fabricados nos Estados Unidos, no momento em que a ilha asiática moderniza suas capacidades militares para dissuadir um possível ataque de Pequim. </p><div class="meta"><span>2026-10-02 10:05</span><span class="fonte">G1 Mundo</span><a href="https://g1.globo.com/mundo/noticia/2026/10/02/taiwan-recebe-primeiros-cacas-f-16v-fabricados-eua.ghtml" target="_blank" rel="noopener noreferrer">Ler na fonte &rarr;</a></div></article><article class="item"><img src="/https://s2-g1.glbimg.com/E-6_Y3-xlPl2fUV_ECB5hD1vpT0=/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2026/9/Q/KXmHufQHKYgskTxMSIVQ/captura-de-tela-2026-10-02-080137.png" alt="" loading="lazy" width="640" height="360" style="width:100%;height:auto;border-radius:10px;margin-bottom:14px"><h2><a href="https://g1.globo.com/mundo/noticia/2026/10/02/se-eu-nao-levantasse-passageiros-morreriam-depoimento-piloto-esfaqueado-voo-flydubai.ghtml">&#x27;Não podia deixar ninguém morrer&#x27;, diz piloto esfaqueado em voo da FlyDubai; veja VÍDEO</a></h2><p>&#x27;Não podia deixar ninguém morrer&#x27;, diz piloto esfaqueado em voo da FlyDubai O piloto do voo FZ1073 da FlyDubai descreveu nesta sexta-feira (2) como lutou pela própria vida e que &quot;não podia deixar ninguém morrer&quot; após ter sido esfaqueado por seu copiloto, que tentou derrubar o avião e matar todos a bordo — </p><div class="meta"><span>2026-10-02 08:52</span><span class="fonte">G1 Mundo</span><a href="https://g1.globo.com/mundo/noticia/2026/10/02/se-eu-nao-levantasse-passageiros-morreriam-depoimento-piloto-esfaqueado-voo-flydubai.ghtml" target="_blank" rel="noopener noreferrer">Ler na fonte &rarr;</a></div></article><article class="item"><h2><a href="https://g1.globo.com/mundo/noticia/2026/10/02/mulher-tem-perna-errada-amputada-durante-cirurgia-e-processa-hospital-nos-eua.ghtml">Mulher tem perna errada amputada durante cirurgia e processa hospital nos EUA</a></h2><p>Marietta, Ohio. AP Uma mulher de 74 anos está processando um hospital em Ohio, nos Estados Unidos, depois de ter a perna errada amputada durante uma cirurgia. Sharon Jacks deveria ter o membro direito retirado abaixo do joelho, mas os médicos amputaram a perna esquerda, segundo a ação judicial. 📱Favorite o g1 no...</p><div class="meta"><span>2026-10-02 06:00</span><span class="fonte">G1 Mundo</span><a href="https://g1.globo.com/mundo/noticia/2026/10/02/mulher-tem-perna-errada-amputada-durante-cirurgia-e-processa-hospital-nos-eua.ghtml" target="_blank" rel="noopener noreferrer">Ler na fonte &rarr;</a></div></article><article class="item"><img src="/https://ichef.bbci.co.uk/ace/ws/1536/cpsprodpb/63c0/live/298d88c0-a008-11f1-a291-b542ee92de7c.png" alt="" loading="lazy" width="640" height="360" style="width:100%;height:auto;border-radius:10px;margin-bottom:14px"><h2><a href="https://www.bbc.com/portuguese/articles/cqz0z0epzdrxo?at_medium=RSS&amp;at_campaign=rss">Morre Lito Sousa, o youtuber que fez milhões se apaixonarem por aviação</a></h2><p>Mecânico e piloto de aviões, Lito Sousa comoveu milhões de pessoas ao revelar que enfrentava a doença de Creutzfeldt-Jakob (DCJ).</p><div class="meta"><span>2026-10-01 22:44</span><span class="fonte">BBC News Brasil</span><a href="https://www.bbc.com/portuguese/articles/cqz0z0epzdrxo?at_medium=RSS&amp;at_campaign=rss" target="_blank" rel="noopener noreferrer">Ler na fonte &rarr;</a><span>Também em: BBC News Brasil</span></div></article>
+  </main>
+
+  <footer>
+    <div class="rodape-links">
+      <a href="/">Boletim</a>
+      <a href="/sobre/">Sobre</a>
+      <a href="/como-apuramos/">Como apuramos</a>
+      <a href="/privacidade/">Privacidade</a>
+    </div>
+    <p>Mundo em Questão — 69 notícias de 8 veículos.
+       Atualizado em 2026-10-02 12:43. Todo o conteúdo vem dos veículos citados,
+       com o link para a matéria original. This software is a news aggregator;
+       nao reproduz os textos originais.</p>
+  </footer>
+
+</div>
+</body>
+</html>
