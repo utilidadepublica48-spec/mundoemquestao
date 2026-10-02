@@ -57,6 +57,8 @@ header.top{
   border-bottom:1px solid var(--line);
 }
 header.top a{text-decoration:none;font-size:1.05rem}
+.marca{display:flex;align-items:center;gap:11px}
+.marca-logo{width:30px;height:30px;display:block;flex-shrink:0}
 header.top nav{display:flex;gap:22px;font-weight:500;font-size:.95rem}
 header.top nav a{color:var(--muted)}
 header.top nav a:hover{color:var(--accent)}
@@ -74,19 +76,62 @@ header.top nav a:hover{color:var(--accent)}
 
 /* ------------------------------------------------------- capa */
 
-.hero{display:grid;grid-template-columns:1.25fr .75fr;gap:32px;align-items:center;padding:40px 0 36px}
+/* O logo é um emblema circular com detalhes metallicos finos. Por isso a
+   capa da quite presisa de ar em volta: colado no texto, os detalhes se
+   perdem. Aqui a coluna do logo tem largura propria e fica centralizada
+   dentro dela. */
+.hero{
+  display:grid;
+  grid-template-columns:1fr auto;
+  gap:20px clamp(32px,6vw,72px);
+  align-items:center;
+  padding:clamp(32px,6vw,64px) 0 clamp(28px,5vw,52px);
+}
+
+.hero-texto{min-width:0}
+
 .hero h1{
   font-family:var(--display);font-weight:800;
-  font-size:clamp(2.4rem,7vw,4.4rem);line-height:.98;
-  letter-spacing:-.03em;margin:0 0 16px;
+  font-size:clamp(2.5rem,7.5vw,4.6rem);
+  line-height:.96;
+  letter-spacing:-.035em;
+  margin:0 0 18px;
 }
-.hero p{max-width:34ch;margin:0;font-size:1.2rem;color:var(--muted)}
 
-/* O logo do Mundo em Questão: globo com a rosa dos ventos e o anel de
-   metal dourado. É a imagem oficial do site (logo.svg). */
+/* O subtitulo acompanha a largura do titulo, para nao invadir o logo */
+.hero p{
+  max-width:30ch;
+  margin:0 0 22px;
+  font-size:clamp(1.05rem,2vw,1.25rem);
+  line-height:1.55;
+  color:var(--muted);
+}
+
+/* Faixa com o horario da ultima atualizacao */
+.hero-selo{
+  display:inline-flex;align-items:center;gap:9px;
+  font:600 .8rem var(--display);
+  color:var(--muted);
+  border:1.5px solid var(--line);
+  border-radius:999px;
+  padding:7px 15px;
+}
+.hero-selo::before{
+  content:"";width:7px;height:7px;border-radius:50%;
+  background:var(--accent);flex-shrink:0;
+}
+
+/* O logo: um emblema circular, entao precisa de espaco quadrado.
+   O brilho suave em volta faz a borda dourada parecer parte da pagina. */
+.hero-logo{
+  display:flex;align-items:center;justify-content:center;
+  width:clamp(160px,26vw,320px);
+  flex-shrink:0;
+}
 .globo{
-  width:min(300px,74vw);justify-self:end;
-  filter:drop-shadow(0 12px 26px rgba(15,35,71,.30));
+  width:100%;height:auto;display:block;
+  filter:drop-shadow(0 14px 30px rgba(15,35,71,.26))
+         drop-shadow(0 2px 6px rgba(138,90,0,.20));
 }
 
 /* ---------------------------------------------------- seções */
@@ -179,8 +224,12 @@ h2{font-family:var(--display);font-weight:700;font-size:1.5rem;letter-spacing:-.
   header.top{padding:14px 0}
   /* No celular a navegação some para sobrar espaço ao botão Atualizar */
   header.top nav{display:none}
-  .hero{grid-template-columns:1fr;padding-top:26px;gap:22px}
-  .globo{max-width:150px;justify-self:start;order:-1}
+  /* No celular o logo vem primeiro e centralizado: e o primeiro
+     contato com a marca, antes mesmo do texto. */
+  .hero{grid-template-columns:1fr;gap:26px;padding-top:28px}
+  .hero-logo{order:-1;width:min(180px,48vw);justify-self:center}
+  .hero h1{font-size:clamp(2.2rem,10vw,3.2rem)}
+  .hero p{margin-bottom:18px}
   .feed{grid-template-columns:1fr}
 
   /* Correção importante: sem "grid-row:auto", o cartão da manchete
@@ -196,7 +245,10 @@ h2{font-family:var(--display);font-weight:700;font-size:1.5rem;letter-spacing:-.
 <div class="wrap">
 
   <header class="top">
-    <a href="#topo">Mundo em Questão</a>
+    <a href="#topo" class="marca">
+      <img class="marca-logo" src="logo.png" width="30" height="30" alt="">
+      <span>Mundo em Questão</span>
+    </a>
     <nav aria-label="Principal">
       <a href="#boletim">Boletim</a>
       <a href="#secoes">Seções</a>
@@ -206,12 +258,15 @@ h2{font-family:var(--display);font-weight:700;font-size:1.5rem;letter-spacing:-.
   </header>
 
   <div class="hero" id="topo">
-    <div>
-      <h1>Mundo em Questão</h1>
+    <div class="hero-texto">
+      <h1>Mundo em<br>Questão</h1>
       <p>O que move o mundo, explicado em português, todo dia.</p>
+      <span class="hero-selo" id="hero-selo">atualizando…</span>
     </div>
-    <img class="globo" src="logo.png" width="300" height="300"
-         alt="Mundo em Questão: globo com rosa dos ventos">
+    <div class="hero-logo">
+      <img class="globo" src="logo.png" width="320" height="318"
+           alt="Emblema do Mundo em Questão: globo com rosa dos ventos e anel dourado">
+    </div>
   </div>
 
   <section id="boletim" aria-labelledby="h-boletim">
@@ -470,6 +525,10 @@ function mostrar() {
   if (BUSCA) partes.push('· busca: "' + BUSCA + '"');
   document.getElementById('info').textContent =
     partes.join(' ') + '  ·  atualizado às ' + DADOS.gerado_em;
+
+  // o selo da capa mostra o horario da ultima atualizacao
+  const selo = document.getElementById('hero-selo');
+  if (selo) selo.textContent = 'atualizado às ' + DADOS.gerado_em;
 
   // Fontes que falharam hoje (o site continua funcionando sem elas)
   const avisos = document.getElementById('avisos');
