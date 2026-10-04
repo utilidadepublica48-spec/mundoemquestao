@@ -11,28 +11,7 @@
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#0F2347">
-<meta name="description" content="Boletim diário sobre geopolítica, economia, história e ciência, em português. Notícias do mundo em 8 editorias, com o link da matéria original.">
-<link rel="canonical" href="https://www.mundoemquestao.com.br/">
-
-<!-- Imagem usada quando alguém compartilha o site no WhatsApp, Facebook,
-     X ou LinkedIn. Tem que ser 1200x630: é o tamanho que essas redes
-     recortam sem cortar o logo. -->
-<meta property="og:type" content="website">
-<meta property="og:locale" content="pt_BR">
-<meta property="og:site_name" content="Mundo em Questão">
-<meta property="og:title" content="Mundo em Questão — o que move o mundo, todo dia">
-<meta property="og:description" content="Geopolítica, guerras, economia, história, religiões e ciência. Notícias do mundo em português, sempre com o link da matéria original.">
-<meta property="og:url" content="https://www.mundoemquestao.com.br/">
-<meta property="og:image" content="https://www.mundoemquestao.com.br/og.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Mundo em Questão — o que move o mundo, todo dia">
-<meta name="twitter:description" content="Notícias do mundo em 8 editorias, com o link da matéria original.">
-<meta name="twitter:image" content="https://www.mundoemquestao.com.br/og.png">
-
-<!-- Permite instalar o site como aplicativo no celular (PWA) -->
-<link rel="manifest" href="manifest.json">
+<meta name="description" content="Boletim diário sobre geopolítica, economia, história e ciência, em português.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -278,158 +257,7 @@ h2{font-family:var(--display);font-weight:700;font-size:1.5rem;letter-spacing:-.
   .lead{padding:22px}
   .sobre{display:grid;grid-template-columns:1fr;gap:0}
 }
-
-/* ------------------------------------------- páginas das seções */
-
-.intro-secoes{color:var(--muted);font-size:1rem;margin:0 0 16px;max-width:68ch}
-
-/* Os oito links para as páginas de cada editoria. São o acesso principal:
-   o filtro de baixo é só um atalho. */
-.lista-secoes-real{
-  list-style:none;margin:0 0 26px;padding:0;
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px;
-}
-.lista-secoes-real a{
-  display:flex;align-items:center;min-height:48px;
-  font:600 1.125rem var(--display);color:var(--ink);text-decoration:none;
-  background:var(--surface);border:1.5px solid var(--line);
-  border-radius:12px;padding:12px 16px;
-}
-.lista-secoes-real a:hover{border-color:var(--accent);color:var(--accent)}
-.lista-secoes-real a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
-
-/* ------------------------------------------------------------ rodapé */
-
-.rodape-links{display:flex;flex-wrap:wrap;gap:8px 22px;margin-bottom:14px}
-.rodape-links a{
-  color:var(--ink);text-decoration:none;font-weight:600;
-  min-height:44px;display:inline-flex;align-items:center;
-  border-bottom:2px solid var(--accent);
-}
-.rodape-links a:hover{color:var(--accent)}
-.rodape-nota p{margin:0 0 8px;max-width:68ch}
-
-/* ---------------------------------------- tipografia (escala pedida) */
-
-/* Texto corrido: 1.0625 a 1.125rem no computador, nunca menos que 16px
-   no celular (abaixo disso o iPhone dá zoom automático ao focar). */
-body{font-size:1.125rem;line-height:1.65}
-@media (max-width:760px){body{font-size:1rem}}
-
-/* Título principal: o limite é 3.75rem. Antes chegava a 4.6rem e
-   dominava a tela do celular. */
-.hero h1{font-size:clamp(2.25rem,5vw + 1rem,3.75rem)}
-
-/* Subtítulo: 1.125 a 1.5rem */
-.hero p{font-size:clamp(1.125rem,2vw + 0.75rem,1.5rem)}
-
-/* Títulos de seção: 1.5 a 2.25rem */
-h2{font-size:clamp(1.5rem,2.5vw + 1rem,2.25rem)}
-
-/* Nome da seção na grade: 1.125 a 1.25rem, negrito */
-.lista-secoes-real a{font-size:1.125rem;font-weight:700}
-
-/* Título de notícia: 1.25 a 1.5rem */
-.item h3{font-size:1.25rem}
-.lead h3{font-size:clamp(1.5rem,2vw + 1rem,2.1rem)}
-
-/* Metadados (data, fonte, categoria): 13 a 14px. Nada abaixo disso. */
-.tag,.date,.fonte,.outras,.info-topo,.aviso{font-size:0.875rem}
-@media (max-width:760px){
-  .tag,.date,.fonte,.outras,.info-topo{font-size:0.8125rem}
-}
-
-/* Coluna de leitura com 65 a 70 caracteres */
-.hero p,.lead p,.item p,.intro-secoes{ max-width:68ch }
-
-/* No celular a navegação some; agora ela vira um menu compacto */
-header.top nav{display:none}
-
-@media (max-width:760px){
-  .lista-secoes-real{grid-template-columns:1fr}
-  header.top{flex-wrap:wrap;row-gap:10px}
-}
-
-
-/* ---------------------------- menu do celular (o antigo sumia) */
-
-/* No celular a lista de links vira um painel que abre e fecha.
-   Antes de nowrap ficava display:none e o menu simplemente desaparecia,
-   deixando o site sem nenhum caminho para as páginas internas. */
-.menu-celular{display:none}
-@media (max-width:760px){
-  header.top{position:sticky;top:0;z-index:20;background:var(--bg);
-             padding:10px 0;flex-wrap:nowrap;align-items:center}
-  header.top nav{
-    display:flex;position:absolute;top:100%;left:0;right:0;
-    flex-direction:column;gap:0;background:var(--surface);
-    border:1.5px solid var(--line);border-radius:0 0 12px 12px;
-    padding:6px;box-shadow:0 12px 28px rgba(15,35,71,.14);
-  }
-  /* Escondido por padrao: o JS troca a classe "aberto" */
-  header.top nav:not(.aberto){display:none}
-  header.top nav a{
-    padding:13px 14px;min-height:48px;display:flex;align-items:center;
-    font-size:1rem;color:var(--ink);text-decoration:none;
-    border-radius:8px;
-  }
-  header.top nav a:hover{background:var(--bg);color:var(--accent)}
-  .menu-celular:focus-visible,.botao:focus-visible{
-    outline:3px solid var(--accent);outline-offset:3px;
-  }
-  .menu-celular{
-    display:inline-flex;align-items:center;gap:8px;order:3;margin-left:auto;
-    font:700 .875rem var(--display);color:var(--ink);
-    background:transparent;border:1.5px solid var(--line);
-    border-radius:999px;padding:9px 14px;min-height:44px;cursor:pointer;
-  }
-  .menu-celular[aria-expanded="true"]{border-color:var(--accent);color:var(--accent)}
-  .botao{padding:9px 14px}
-}
-
-
-/* ------------------------- correcoes do celular */
-
-/* A marca quebrava o nome em duas linhas no celular, ja que o menu e o
-   botao Atualizar dividem a mesma faixa. */
-@media (max-width:760px){
-  header.top .marca{flex:1 1 auto;min-width:0}
-  header.top .marca span{
-    white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-    font-size:1rem;
-  }
-  .menu-celular,.botao{flex:0 0 auto;padding:9px 12px;font-size:.8125rem}
-}
-
-/* O texto da busca era cortado. A barra ocupa a largura toda e o
-   placeholder nao precisa ter o texto inteiro. */
-.barra-busca{min-width:0}
-@media (max-width:760px){
-  .barra-busca{font-size:1rem;padding:12px 14px}
-}
-
 </style>
-<script type="application/ld+json">
-{
-  "@context": "https://schema.org",
-  "@type": "NewsMediaOrganization",
-  "name": "Mundo em Questão",
-  "url": "https://www.mundoemquestao.com.br/",
-  "logo": "https://www.mundoemquestao.com.br/icon-192.png",
-  "description": "Boletim diário sobre geopolítica, economia, história e ciência, em português.",
-  "inLanguage": "pt-BR",
-  "sameAs": ["https://instagram.com/mundo_emquestao"],
-  "ethicsPolicy": "https://www.mundoemquestao.com.br/como-apuramos/",
-  "publishingPrinciples": "https://www.mundoemquestao.com.br/como-apuramos/",
-  "correctionsPolicy": "https://www.mundoemquestao.com.br/como-apuramos/",
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "contactType": "correções",
-    "email": "contato@mundoemquestao.com.br",
-    "availableLanguage": "Portuguese"
-  }
-}
-</script>
 </head>
 
 <body>
@@ -440,16 +268,11 @@ header.top nav{display:none}
       <img class="marca-logo" src="logo.png" width="30" height="30" alt="">
       <span>Mundo em Questão</span>
     </a>
-    <nav aria-label="Principal" id="nav-principal">
+    <nav aria-label="Principal">
       <a href="#boletim">Boletim</a>
       <a href="#secoes">Seções</a>
-      <a href="sobre/">Sobre</a>
-      <a href="como-apuramos/">Como apuramos</a>
+      <a href="#sobre">Sobre</a>
     </nav>
-    <button class="menu-celular" id="menu-btn" type="button"
-            aria-expanded="false" aria-controls="nav-principal">
-      <span aria-hidden="true">&#9776;</span> Menu
-    </button>
     <button class="botao" id="btn" type="button">Atualizar</button>
   </header>
 
@@ -465,13 +288,11 @@ header.top nav{display:none}
     </div>
   </div>
 
-  <main>
-
   <section id="boletim" aria-labelledby="h-boletim">
     <h2 id="h-boletim">Boletim de hoje</h2>
 
     <input type="search" class="barra-busca" id="busca" aria-label="Buscar notícia"
-           placeholder="Buscar por palavra...">
+           placeholder="Buscar por palavra no título ou resumo...">
 
     <div class="rotulo">Editoria</div>
     <div class="chips" id="chips-categoria" role="group" aria-label="Filtrar por editoria"></div>
@@ -486,21 +307,6 @@ header.top nav{display:none}
 
   <section id="secoes" aria-labelledby="h-secoes">
     <h2 id="h-secoes">Seções</h2>
-    <p class="intro-secoes">Cada editoria tem uma página própria, com todas as
-       notícias dela e o link da matéria original.</p>
-    <!-- These eight links are the entry doors into the section pages.
-         The buttons below them only filter the home page. -->
-    <ul class="lista-secoes-real" id="lista-secoes-real">
-      <li><a href="geopolitica/">🌍 Geopolítica</a></li>
-      <li><a href="guerras-e-conflitos/">⚔️ Guerras e conflitos</a></li>
-      <li><a href="politica-internacional/">🏛️ Política internacional</a></li>
-      <li><a href="economia-mundial/">💰 Economia mundial</a></li>
-      <li><a href="historia/">📜 História</a></li>
-      <li><a href="religioes-e-sociedade/">✝️ Religiões e sociedade</a></li>
-      <li><a href="ciencia-e-tecnologia/">🔬 Ciência e tecnologia</a></li>
-      <li><a href="brasil-no-mundo/">🇧🇷 Brasil no mundo</a></li>
-    </ul>
-    <div class="rotulo">Filtrar o boletim de hoje</div>
     <ul class="chips lista-secoes" id="lista-secoes"></ul>
   </section>
 
@@ -522,25 +328,9 @@ header.top nav{display:none}
     </div>
   </section>
 
-  </main>
-
-  <footer style="border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);font-size:.875rem">
-    <div class="rodape-links">
-      <a href="sobre/">Sobre</a>
-      <a href="como-apuramos/">Como apuramos</a>
-      <a href="privacidade/">Privacidade</a>
-      <a href="mailto:contato@mundoemquestao.com.br">Contato e correções</a>
-      <a href="https://instagram.com/mundo_emquestao" target="_blank"
-         rel="noopener noreferrer">Instagram</a>
-    </div>
-    <div class="rodape-nota">
-      <p>© <span id="ano"></span> Mundo em Questão. Fonte citada em cada
-         notícia, com o link para a matéria original. Nenhum texto é copiado:
-         o resumo é um recorte do veículo de origem.</p>
-      <p>Encontrou um erro? Escreva para
-         <a href="mailto:contato@mundoemquestao.com.br">contato@mundoemquestao.com.br</a>
-         com o assunto "Correção" e o link da notícia.</p>
-    </div>
+  <footer style="border-top:1px solid var(--line);padding:28px 0 40px;color:var(--muted);font-size:.93rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px">
+    <span>© <span id="ano"></span> Mundo em Questão</span>
+    <span>Fonte citada em cada notícia · nenhum texto copiado</span>
   </footer>
 </div>
 
@@ -595,9 +385,7 @@ function carregar(forcar) {
   // o servidor local.
   const arquivoLocal = 'noticias.json';
 
-  // cache: 'no-store' impede que o navegador guarde a versao antiga do
-  // arquivo. Sem isso a tela continuava mostrando noticia ja retirada.
-  fetch(arquivoLocal, { cache: 'no-store' })
+  fetch(arquivoLocal + (forcar ? '?r=' + Date.now() : ''))
     .then(r => { if (!r.ok) throw new Error('sem arquivo'); return r.json(); })
     .catch(() => fetch(forcar ? '/api/noticias?atualizar=1' : '/api/noticias').then(r => r.json()))
     .then(dados => {
@@ -943,23 +731,6 @@ function mostrarOutras(artigo, noticia) {
    ============================================================ */
 
 document.getElementById('ano').textContent = new Date().getFullYear();
-
-/* Menu do celular: abre e fecha a lista de links. */
-const menuBtn = document.getElementById('menu-btn');
-const navPrincipal = document.getElementById('nav-principal');
-if (menuBtn && navPrincipal) {
-  menuBtn.onclick = () => {
-    const aberto = navPrincipal.classList.toggle('aberto');
-    menuBtn.setAttribute('aria-expanded', String(aberto));
-  };
-  // Fecha ao clicar num link ou fora do menu
-  navPrincipal.onclick = e => {
-    if (e.target.tagName === 'A') {
-      navPrincipal.classList.remove('aberto');
-      menuBtn.setAttribute('aria-expanded', 'false');
-    }
-  };
-}
 carregar(false);
 </script>
 </body>

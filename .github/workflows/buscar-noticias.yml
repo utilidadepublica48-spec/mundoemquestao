@@ -16,7 +16,14 @@ name: Atualizar o site
 # A cada 30 minutos, mais um agendamento manual que podemos usar na hora.
 on:
   schedule:
-    - cron: '17,47 * * * *'
+    # A cada hora, no minuto 12.
+    #
+    # Antes era '17,47' (duas vezes por hora) e o GitHub simplesmente
+    # parou de disparar: nas ultimas 6h foram ZERO rodadas. Agendamento
+    # de mais de uma vez por hora sofre throttling e nao e garantido pelo
+    # GitHub — o intervalo minimo confiavel e de uma hora. Uma vez por
+    # hora cobre a atualizacao do dia, que e o que o site precisa.
+    - cron: '12 * * * *'
   workflow_dispatch:
 
 permissions:
