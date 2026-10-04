@@ -38,6 +38,7 @@ RAIZ = os.path.dirname(os.path.abspath(__file__))
 MAX_POR_FONTE = 30
 LIMITE_LARGURA = 1600
 LIMITE_FOTOS = 16          # quantas fotos baixar por rodada
+FOTOS_POR_FONTE = 8        # quantas paginas abrir para buscar foto (Folha)
 ALTURA_RODADA = 6 * 60      # 6 minutos: se passar disso, a rodada para
 
 # O horario do site e o de Brasilia (UTC-3), e nao o do servidor.
@@ -648,7 +649,11 @@ def main():
                  if e_mundial(n) and not e_politica_nacional(n)]
 
         if f["nome"].startswith("Folha"):
-            for n in itens:
+            # A Folha nao manda foto no feed; temos que abrir a pagina. Isso
+            # e lento (uma requisicao por noticia) e por isso limitamos as 8
+            # primeiras. O resto aparece sem imagem, o que ainda e melhor
+            # que gastar 3 minutos do limite mensal do GitHub.
+            for n in itens[:FOTOS_POR_FONTE]:
                 if time.time() - inicio > ALTURA_RODADA:
                     break
                 n["imagem"] = foto_na_pagina(n["link"])
