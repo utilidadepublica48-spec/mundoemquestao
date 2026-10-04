@@ -385,7 +385,7 @@ function carregar(forcar) {
   // o servidor local.
   const arquivoLocal = 'noticias.json';
 
-  fetch(arquivoLocal + (forcar ? '?r=' + Date.now() : ''))
+  fetch(arquivoLocal, { cache: 'no-store' })
     .then(r => { if (!r.ok) throw new Error('sem arquivo'); return r.json(); })
     .catch(() => fetch(forcar ? '/api/noticias?atualizar=1' : '/api/noticias').then(r => r.json()))
     .then(dados => {
