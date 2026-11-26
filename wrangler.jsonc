@@ -1,10 +1,15 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "mundoemquestao",
+  "main": "worker.js",
   "compatibility_date": "2026-09-30",
   "assets": {
     "directory": "./publico",
+    "binding": "ASSETS",
     "html_handling": "auto-trailing-slash"
+  },
+  "triggers": {
+    "crons": ["0 * * * *"]
   },
   "observability": {
     "enabled": false
